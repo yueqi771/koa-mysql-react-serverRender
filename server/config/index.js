@@ -3,9 +3,9 @@ const config = {
     database: {
         DATABASE: 'yueqisql',
         USERNAME: 'root',
-        PASSWORD: 'yueqiaaa',
+        PASSWORD: '',
         PORT: '3306',
-        host: 'localhost'
+        HOST: 'localhost'
     }
 }
 

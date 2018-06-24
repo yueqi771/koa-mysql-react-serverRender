@@ -1,5 +1,6 @@
 const Koa = require('Koa');
 const mysql = require('mysql');
+const route = require('koa-route');
 const send = require('koa-send');
 const path = require('path');
 
@@ -14,11 +15,6 @@ const connection = mysql.createConnection({
 })
 
 connection.connect();
-
-connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-    if (error) throw error;
-    console.log(results)
-})
 
 /* 插入数据 
 const add_data = "INSERT INTO user(id, name, mobile, password, timezone, sex, description) VALUES(0, ?, ?, ?, ?, ?, ?)";
@@ -41,20 +37,7 @@ connection.query(add_data, data_params, (err, result) => {
 
 const sql = 'SELECT * FROM user';
 
-connection.query(sql, (err, result) => {
-    if (err) {
-        consoel.log('[SELECT ERROR] - ' + err.message);
-        return;
-    }
-
-    console.log(result)
-})
-app.use(async context => {
-
-    context.body = 'result';
-
-})
-
+app.use(require('./router/user.js').routes())
 
 
 // 监听一个服务器
