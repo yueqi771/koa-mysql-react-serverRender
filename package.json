@@ -8,7 +8,7 @@
     "build:server": "webpack --config client/build/webpack.config.server.js",
     "build": "npm run clear && npm run build:client && npm run build:server",
     "clear": "rimraf dist",
-    "dev:client": "cross-env NODE_ENV=development webpack-dev-server --config client/build/webpack.config.client.js",
+    "dev:client": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.client.conf.js",
     "dev:server": "nodemon server/server.js",
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
     "start": "cross-env NODE_ENV=production node server/server.js"
@@ -37,6 +37,7 @@
     "koa-views": "^6.0.2",
     "markdown-it": "^8.4.0",
     "md5": "^2.2.1",
+    "mini-css-extract-plugin": "^0.4.0",
     "moment": "^2.18.1",
     "mysql": "^2.15.0",
     "nodemon": "^1.17.3",
@@ -79,8 +80,9 @@
     "react-hot-loader": "^4.0.0-beta.22",
     "rimraf": "^2.6.2",
     "style-loader": "^0.20.3",
-    "webpack": "^4.4.0",
-    "webpack-dev-server": "^2.11.1",
+    "webpack": "^4.2.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.1"
   }
 }
