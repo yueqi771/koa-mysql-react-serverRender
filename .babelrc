@@ -1,13 +1,21 @@
 {
     "presets": [
         ["es2015",{ "loose": false } ],
-        "stage-1",
+        "stage-0",
         "react"
     ],
     "compact": false,
-    "plugins": ["transform-decorators-legacy",
-                "react-hot-loader/babel",
-                "transform-es3-member-expression-literals",
-                "transform-async-to-generator",
-                "transform-es3-property-literals"]
+    "plugins": [
+        "transform-class-properties",
+        "transform-decorators-legacy",
+        "react-hot-loader/babel",
+        "transform-es3-member-expression-literals",
+        "transform-async-to-generator",
+        "transform-es3-property-literals",
+        ["import", { 
+            "libraryName": "antd", 
+            "libraryDirectory": "es", 
+            "style": "css" }
+        ]
+    ]
 }

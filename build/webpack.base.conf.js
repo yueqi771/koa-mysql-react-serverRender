@@ -7,9 +7,9 @@ module.exports = {
         alias: {
             "@components": path.resolve(__dirname, "../client/components"),
             "@pages": path.resolve(__dirname, "../client/pages"),
-            "@style": path.resolve(__dirname, "../client/static/css"),
+            "@style": path.resolve(__dirname, "../static/css"),
             "@images": path.resolve(__dirname, "../client/static/images"),
-            "@fonts": path.resolve(__dirname, "../client/static/fonts"),
+            "@fonts": path.resolve(__dirname, "../static/fonts"),
             "@utils": path.resolve(__dirname, "../client/utils"),
             '@actions': path.resolve(__dirname, "../client/actions"),
             '@reducers': path.resolve(__dirname, "../client/reducers")

@@ -5,7 +5,7 @@ const RouteMap = [
     {
         path: '/index',
         component: Component.Async(() =>
-            import ('@page/Index/index')),
+            import ('@pages/Index/index')),
         exact: 'true'
     },
 ]

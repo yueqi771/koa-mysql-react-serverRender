@@ -11,7 +11,7 @@ module.exports = merge(baseConf, {
         app: ["babel-polyfill","./src/main.js"],
     },
     output: {
-        path: config.build.outputPath,
+        path: path.resolve(__dirname, "../dist"),
         filename: "js/[name].[chunkhash:8].js",
         publicPath: "./"
     },

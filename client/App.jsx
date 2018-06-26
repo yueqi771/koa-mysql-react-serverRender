@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import RouterMap from './router/index';
+import RouterMap from './routers/index';
 
-import 'antd/dist/antd.css';
 import '@style/common.css';
-import '@font/iconfont.css';
+import '@fonts/iconfont.css';
 
 
 class App extends Component {
