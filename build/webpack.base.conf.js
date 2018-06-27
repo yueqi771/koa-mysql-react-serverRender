@@ -11,8 +11,7 @@ module.exports = {
             "@images": path.resolve(__dirname, "../client/static/images"),
             "@fonts": path.resolve(__dirname, "../static/fonts"),
             "@utils": path.resolve(__dirname, "../client/utils"),
-            '@actions': path.resolve(__dirname, "../client/actions"),
-            '@reducers': path.resolve(__dirname, "../client/reducers")
+            '@store': path.resolve(__dirname, "../client/store")
         }
     },
     module: {
@@ -36,7 +35,10 @@ module.exports = {
 				test: /\.jsx$/,
 				loader: 'babel-loader',
 				query: {
-					presets: ['react', 'es2015', "stage-0"]
+                    presets: ['react', 'es2015', "stage-1"],
+                    plugins: [
+                        'transform-decorators-legacy',
+                    ],
 				}
       		},
 			{
