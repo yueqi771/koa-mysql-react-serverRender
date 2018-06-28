@@ -15,12 +15,9 @@ export default (store, routerContext, url) => {
 
 export const createStore = () => {
     if(process.env.NODE_ENV == 'develop'){
-        var middleWare = applyMiddleware(thunk);
-        var enhancer = compose(middleWare, window.devToolsExtension && window.devToolsExtension());
-        var store = createStore(reducer, enhancer);
+        return {}
     }else{
-        var middleWare = applyMiddleware(thunk);
-        var store = createStore(reducer, middleWare);
+        return {}
     }
 }
 

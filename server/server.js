@@ -6,43 +6,17 @@ const path = require('path');
 
 const app = new Koa();
 
-//  链接mysql
-const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "yueqisql"
-})
+// 判断当前环境
+const isDev= process.env.NODE_ENV === 'development';
+renderRouter = isDev ? require('./router/ssr-dev') : require('./routers/ssr')
 
-connection.connect();
-
-/* 插入数据 
-const add_data = "INSERT INTO user(id, name, mobile, password, timezone, sex, description) VALUES(0, ?, ?, ?, ?, ?, ?)";
-const data_params = ['越祈', '15066132753', '123456', '济南', '1', '流翼'];
-
-connection.query(add_data, data_params, (err, result) => {
-    if (err) {
-        console.log('[INSERT ERROR] - ', err.message);
-        return;
-    }
-
-    console.log('--------------------------INSERT----------------------------');
-    console.log(result)
-    console.log('-----------------------------------------------------------------\n\n');
-})
-*/
-
-
-// 查询数据
-
-const sql = 'SELECT * FROM user';
-
+// 配置路由
 app.use(require('./router/user.js').routes())
 
 
 // 监听一个服务器
 const HOST = process.env.HOST || '0.0.0.0';
-const PORT = process.env.PROT || 7007;
+const PORT = process.env.PROT || 3007;
 
 app.listen(PORT, HOST, () => {
     console.log(`server is listening on ${HOST}:${PORT}`)
