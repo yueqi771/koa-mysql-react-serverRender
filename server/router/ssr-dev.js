@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const path = require('path');
 const vm = require("vm");
 const serverConfig = require('../../build/webpack.server.conf.js');
+const serverRender = require('./server-render')
 
 const mfs = new MemoryFs();
 
@@ -26,7 +27,7 @@ const getModuleFromString = (bundle, filename) => {
         }
     */
     const wrapper = NativeModule.wrap(bundle);
-    console.log(wrapper);
+    // console.log(wrapper);
 
     // 执行wrap代码
     const script = new vm.Script(wrapper, {
@@ -60,9 +61,13 @@ serverCompiler.watch({}, (err, status) => {
         serverConfig.output.path,
         serverConfig.output.filename
     )
+    console.log('bundlePath-------------------------')
+    console.log(bundlePath)
+    console.log('-------------------------')
+
 
     // 读取文件内容
-    const bundle = mfs.readFileSync(bundlePath, 'utf-8');
+    bundle = mfs.readFileSync(bundlePath, 'utf-8');
 
     // 将读取出来的字符串转化成js可以及解析的格式
     const m = getModuleFromString(bundle, 'server-entry.js');
@@ -72,6 +77,7 @@ serverCompiler.watch({}, (err, status) => {
 })
 
 const handleSSR = async (ctx) => {
+    console.log(bundle)
     if(!bundle) {
         ctx.body = "node正在编译中， 请稍候";
         return;

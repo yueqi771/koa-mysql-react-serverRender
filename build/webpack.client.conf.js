@@ -13,11 +13,11 @@ module.exports = merge(baseWebpackConfig, {
             path.join(__dirname, '../client/main.js')
         ]
     },
-    output: {
-        path: __dirname + 'devDist',
-        publicPath: "/",
-        filename: "js/[name].js"
-    },
+    // output: {
+    //     path: __dirname + 'devDist',
+    //     publicPath: "/",
+    //     filename: "js/[name].js"
+    // },
     module: {
         rules: [{
             test: /\.less$/,
@@ -43,11 +43,17 @@ module.exports = merge(baseWebpackConfig, {
     ],
 
     devServer: {
+        publicPath: '/dist/',
+        host: '0.0.0.0',
         port: '7000',
         hot: true,
         // 编译出错的时候，在浏览器页面上显示错误
         overlay: {
             errors: true,
+        },
+        // 解决history模式下刷新页面， 路由挂了
+        historyApiFallback: {
+            index: '/dist/index.html'
         },
         proxy: {
             "/api": {
@@ -59,7 +65,5 @@ module.exports = merge(baseWebpackConfig, {
             }
         },
 
-        // 解决history模式下刷新页面， 路由挂了
-        historyApiFallback: true,
     }
 })

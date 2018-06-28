@@ -2,14 +2,14 @@
 const ejs = require('ejs');
 const serialize = require('serialize-javascript');
 
-module.exports = async(ctx, renderer, tem) {
+module.exports = async (ctx, renderer, template) => {
     ctx.headers['ContentType'] = 'text/html';
     const context = { url: ctx.path };
     
-    return new Promise((resolve, reject) => {
-        // const createStoreMap = bun
-        console.log('进入server-render方法了')
+    ctx.body = " 进入server-render方法了"
+    // return new Promise((resolve, reject) => {
+    //     // const createStoreMap = bun
 
-        resolve
-    })
+    //     resolve()
+    // })
 }

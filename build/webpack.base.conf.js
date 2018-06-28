@@ -2,6 +2,12 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+	target: "web",
+	output: {
+        filename: 'bundle.[hash:8].js',
+        path: path.join(__dirname, '../dist'),
+        publicPath: 'http://127.0.0.1:7000/dist/'
+    },
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
         alias: {

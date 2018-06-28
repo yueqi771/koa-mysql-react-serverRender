@@ -11,7 +11,8 @@ const isDev= process.env.NODE_ENV === 'development';
 renderRouter = isDev ? require('./router/ssr-dev') : require('./routers/ssr')
 
 // 配置路由
-app.use(require('./router/user.js').routes())
+app.use(require('./router/user.js').routes());
+app.use(renderRouter.routes()).use(renderRouter.allowedMethods());
 
 
 // 监听一个服务器
