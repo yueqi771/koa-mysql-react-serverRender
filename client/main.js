@@ -7,7 +7,6 @@ import { createHashHistory } from 'history'
 import AppContainer from './App'
 
 /* 初始化redux store */
-
 const initialState = window.__INITIAL__STATE__ || {}
 
 const render = Component => {

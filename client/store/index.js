@@ -6,6 +6,6 @@ export const store = {
 
 export const createStoreMap = () => {
     return {
-        userStore: new UserState(),
+        userStore: new UserStore(),
     }
 }

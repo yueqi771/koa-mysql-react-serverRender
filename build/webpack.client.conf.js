@@ -8,16 +8,17 @@ module.exports = merge(baseWebpackConfig, {
     mode: 'development',
     entry: {
         app: [
-            'babel-polyfill',
             // 'react-hot-loader/patch',
             path.join(__dirname, '../client/main.js')
         ]
     },
-    // output: {
-    //     path: __dirname + 'devDist',
-    //     publicPath: "/",
-    //     filename: "js/[name].js"
-    // },
+
+    output: {
+        path: path.join(__dirname, '../dist'),
+        publicPath: '/',
+        filename: "js/[name].js"
+    },
+    
     module: {
         rules: [{
             test: /\.less$/,
@@ -37,14 +38,15 @@ module.exports = merge(baseWebpackConfig, {
 
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'index.html',
+            template: path.join(__dirname, '../index.html'),
             inject: true
-        })
+        }),
+
+
     ],
 
     devServer: {
-        publicPath: '/dist/',
-        host: '0.0.0.0',
+        // publicPath: '/static/',
         port: '7000',
         hot: true,
         // 编译出错的时候，在浏览器页面上显示错误
@@ -52,9 +54,7 @@ module.exports = merge(baseWebpackConfig, {
             errors: true,
         },
         // 解决history模式下刷新页面， 路由挂了
-        historyApiFallback: {
-            index: '/dist/index.html'
-        },
+        historyApiFallback: true,
         proxy: {
             "/api": {
                 target: "http://dc.mixtmt.com:9619",

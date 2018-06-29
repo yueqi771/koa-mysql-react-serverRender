@@ -3,20 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <%%- meta %>
-
-    <%%- title %>
-
-    <%%- link %>
-
-    <%%- style %>
+    <title>越祈</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
 </head>
 <body>
-    <div id="root"><%%- appString  %></div>
+
+    <div id="root"><%- appString  %></div>
 
     <script>
-        window.__INITIAL_STATE__ = <%%- initialState %>
+        window.__INITIAL_STATE__ = <%- initialState %>
     </script>
 </body>
 </html>

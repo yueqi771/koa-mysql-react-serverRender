@@ -6,7 +6,6 @@
     ],
     "compact": false,
     "plugins": [
-        "transform-runtime",
         "transform-decorators-legacy",
         "react-hot-loader/babel",
         "transform-es3-member-expression-literals",

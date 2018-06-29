@@ -17,7 +17,7 @@ app.use(renderRouter.routes()).use(renderRouter.allowedMethods());
 
 // 监听一个服务器
 const HOST = process.env.HOST || '0.0.0.0';
-const PORT = process.env.PROT || 3007;
+const PORT = process.env.PROT || 3000;
 
 app.listen(PORT, HOST, () => {
     console.log(`server is listening on ${HOST}:${PORT}`)

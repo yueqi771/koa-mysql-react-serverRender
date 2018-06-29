@@ -61,9 +61,6 @@ serverCompiler.watch({}, (err, status) => {
         serverConfig.output.path,
         serverConfig.output.filename
     )
-    console.log('bundlePath-------------------------')
-    console.log(bundlePath)
-    console.log('-------------------------')
 
 
     // 读取文件内容
@@ -77,7 +74,7 @@ serverCompiler.watch({}, (err, status) => {
 })
 
 const handleSSR = async (ctx) => {
-    console.log(bundle)
+    // console.log(bundle)
     if(!bundle) {
         ctx.body = "node正在编译中， 请稍候";
         return;
@@ -93,8 +90,12 @@ const handleSSR = async (ctx) => {
 }
 
 
-const router = new Router();
+const router = require('koa-router')();
 
 router.get('*', handleSSR)
 
+// router.get('*', async function (ctx, next) {
+//     ctx.body = "123123";
+  
+// });
 module.exports = router

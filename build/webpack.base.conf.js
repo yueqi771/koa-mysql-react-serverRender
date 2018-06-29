@@ -6,7 +6,7 @@ module.exports = {
 	output: {
         filename: 'bundle.[hash:8].js',
         path: path.join(__dirname, '../dist'),
-        publicPath: 'http://127.0.0.1:7000/dist/'
+        publicPath: 'http://127.0.0.1:7000/static/'
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
@@ -26,10 +26,14 @@ module.exports = {
 				test: /\.js$/,
 				loader: "babel-loader",
 				exclude: [
-		          path.resolve(__dirname, '../src/static/font/iconfont.js'),
-		          path.resolve(__dirname, '../node_modules'),
-		        ],
-      		},
+		           path.join(__dirname, '../src/static/font/iconfont.js'),
+		           path.join(__dirname, '../node_modules'),
+                ],
+            },
+            {
+				test: /\.ejs$/,
+				loader: "ejs-loader",
+            },
 			{
 				test: /\.css$/,
                 use: [

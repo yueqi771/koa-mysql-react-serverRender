@@ -5,20 +5,12 @@ import { createStoreMap } from './store'
 import App from './App.jsx'
 
 
-export default (store, routerContext, url) => {
+export default (store, routerContext, url) => (
     <Provider {...store}>
         <StaticRouter context={routerContext} location={url}>
             <App />
         </StaticRouter>
     </Provider>
-}
-
-export const createStore = () => {
-    if(process.env.NODE_ENV == 'develop'){
-        return {}
-    }else{
-        return {}
-    }
-}
+)
 
 export { createStoreMap }

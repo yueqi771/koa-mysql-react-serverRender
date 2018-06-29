@@ -3,8 +3,6 @@ import { observer, inject } from 'mobx-react';
 
 
 @inject((store) => {
-    console.log(store.state.userInfo)
-
     return {
         userInfo: store.state.userInfo
     }
