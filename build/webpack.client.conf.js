@@ -42,6 +42,11 @@ module.exports = merge(baseWebpackConfig, {
             inject: true
         }),
 
+        new HtmlWebpackPlugin({
+			template: '!!ejs-compiled-loader!' + path.join(__dirname, '../server.template.ejs'),
+			filename: 'server.ejs'
+		})
+
 
     ],
 

@@ -14,7 +14,10 @@ const getStoreState = (stores) => {
 
 module.exports = async (ctx, bundle, template) => {
     ctx.headers['ContentType'] = 'text/html';
-    const context = { url: ctx.path };
+    // url: ctx.path
+    const context = {  };
+
+    console.log("context----------------")
 
     try {
         const stores = bundle.createStoreMap();
@@ -37,9 +40,12 @@ module.exports = async (ctx, bundle, template) => {
             const state = getStoreState(stores);
             const content = await ReactDomServer.renderToString(app);
 
+            console.log(helmet.style.toString())
+
             const html = ejs.render(template, {
                 appString: content,
                 initialState: serialize(state),
+                style: helmet.style.toString(),
             })
             ctx.body = html;
 
