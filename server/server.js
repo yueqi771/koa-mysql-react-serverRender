@@ -1,8 +1,11 @@
 const Koa = require('Koa');
+
 const mysql = require('mysql');
 const route = require('koa-route');
 const send = require('koa-send');
 const path = require('path');
+var proxy = require('koa-proxy2');
+// const Proxy = require('http-proxy-middleware')
 
 const app = new Koa();
 
@@ -12,6 +15,17 @@ renderRouter = isDev ? require('./router/ssr-dev') : require('./routers/ssr')
 
 // 配置路由
 app.use(require('./router/user.js').routes());
+
+app.use(proxy({
+    proxy_rules: [
+      {
+        proxy_location: '/static',
+        proxy_pass: 'http://localhost:7000/',
+        proxy_micro_service: false,
+        proxy_merge_mode: false
+      }
+    ]
+  }));
 app.use(renderRouter.routes()).use(renderRouter.allowedMethods());
 
 

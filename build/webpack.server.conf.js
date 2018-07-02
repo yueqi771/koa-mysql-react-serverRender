@@ -27,7 +27,7 @@ module.exports = merge(baseWebpackConfig, {
         // 打包出来的名字
         filename: "server-entry.js",
         path: path.join(__dirname, '../dist'),
-        publicPath: '/static',
+        // publicPath: 'http://127.0.0.1:7000/static/',
         // 打包出来的js的模块化方案
         libraryTarget: "commonjs2"
     },
@@ -41,19 +41,27 @@ module.exports = merge(baseWebpackConfig, {
                     fallback:"style-loader"
                 })
             },
+            {
+                test:/\.css/,
+                use:ExtractTextPlugin.extract({
+                    fallback:'style-loader',
+                    use:'css-loader'
+                })
+            },  
         ]
     },
-
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env.API_BASE': JSON.stringify('http://127.0.0.1:3000')
-        }),
-
         // 单独打包css
         new ExtractTextPlugin({
             filename: '[name].[hash].css',
             allChunks: true
         }),
-        
-    ]
+
+        new HtmlWebpackPlugin({
+            template: '!!ejs-compiled-loader!' + path.join(__dirname,'../server.template.ejs'),
+            filename: 'server.ejs',
+            inject: true,
+        })
+    ],
+
 })

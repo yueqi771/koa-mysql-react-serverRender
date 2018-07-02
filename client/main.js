@@ -15,6 +15,8 @@ const render = Component => {
             <BrowserRouter redirect={createHashHistory()}>
                 <div style={{height:'100%'}}>
                     <Route path="/" render={() => <Redirect to="/index" />} exact />
+
+                    
                     <Component />
                 </div>
             </BrowserRouter>

@@ -1,4 +1,5 @@
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
         publicPath: 'http://127.0.0.1:7000/static/'
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.json'],
+        extensions: ['.js', '.jsx', '.json', ',less'],
         alias: {
             "@components": path.resolve(__dirname, "../client/components"),
             "@pages": path.resolve(__dirname, "../client/pages"),
@@ -30,21 +31,11 @@ module.exports = {
 		           path.join(__dirname, '../node_modules'),
                 ],
             },
-            {
-				test: /\.ejs$/,
-				loader: "ejs-compiled-loader!ejs-loader",
-            },
-			{
-				test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader,  // replace ExtractTextPlugin.extract({..})
-                    "css-loader"
-                ]
-            },
-            {
-                test: /\.less$/,
-                loader: "css-loader!less-loader",
-            },
+            // {
+			// 	test: /\.ejs$/,
+			// 	loader: "ejs-compiled-loader!ejs-loader",
+            // },
+			
 			{
 				test: /\.jsx$/,
 				loader: 'babel-loader',
@@ -60,7 +51,8 @@ module.exports = {
 				loader: 'file-loader',
 				options: {
 					limit: 10000,
-					name: 'img/[hash:12].[ext]'
+                    name: 'img/[hash:12].[ext]',
+                    publicPath:"/static/"
 				}
       		},
 			{
@@ -68,7 +60,8 @@ module.exports = {
 				loader: 'file-loader',
 				options: {
 					limit: 10000,
-					name: 'media/[hash:12].[ext]'
+                    name: 'media/[hash:12].[ext]',
+                    publicPath:'/static/'
 				}
       		},
 			{
@@ -83,11 +76,10 @@ module.exports = {
     },
 
     plugins: [
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: "[name].css",
-            chunkFilename: "[id].css"
-        })
+
+        
+        
     ]
+
+   
 }

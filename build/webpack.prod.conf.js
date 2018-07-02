@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const baseConf = require('./webpack.base.conf');
 
 module.exports = merge(baseConf, {
@@ -13,18 +13,7 @@ module.exports = merge(baseConf, {
     output: {
         path: path.resolve(__dirname, "../dist"),
         filename: "js/[name].[chunkhash:8].js",
-        publicPath: "/static/"
-    },
-    module: {
-        rules: [
-            {
-                test:/\.less/,
-                use:ExtractTextPlugin.extract({
-                    use: ["css-loader", "less-loader"],
-                    fallback:"style-loader"
-                })
-            },
-        ]
+        // publicPath: "/static/"
     },
     optimization: {
         splitChunks: {
@@ -50,6 +39,29 @@ module.exports = merge(baseConf, {
             },
         }
     },
+
+    module: {
+        rules: [
+            {
+                test:/\.less/,
+                use:ExtractTextPlugin.extract({
+                    use: ["css-loader", "less-loader"],
+                    fallback:"style-loader"
+                })
+            },
+            {
+                test:/\.css/,
+                use:ExtractTextPlugin.extract({
+                    fallback:'style-loader',
+                    use:'css-loader'
+                })
+            },  
+            {
+				test: /\.ejs$/,
+				loader: "ejs-compiled-loader!ejs-loader",
+            },
+        ]
+    },
     plugins: [
         // 单独打包css
         new ExtractTextPlugin({
@@ -72,6 +84,13 @@ module.exports = merge(baseConf, {
                 removeComments: true,
                 collapseWhitespace: true
             }
+        }),
+
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname,'../server.template.ejs'),
+            filename: 'server.ejs',
+            inject: true,
         })
+
     ]
 })

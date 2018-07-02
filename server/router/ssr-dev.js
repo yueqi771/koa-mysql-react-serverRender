@@ -5,6 +5,7 @@ const fs = require('fs');
 const webpack = require('webpack');
 const path = require('path');
 const vm = require("vm");
+const axios = require('axios');
 const serverConfig = require('../../build/webpack.server.conf.js');
 const serverRender = require('./server-render')
 
@@ -16,6 +17,20 @@ serverCompiler.outputFileSystem = mfs;
 
 // 生成一个可以运行js代码的沙箱
 const NativeModule = require('module'); 
+
+// dev server的时候是没有html页面的，所以使用axios去dev client下获取
+
+const getTemplateFromClient = () => {
+		// 此处暂时是死路径，可以写成活的,文件命名由webpack.client.conf决定
+    return axios.get('http://localhost:8087/static/server.ejs')
+        .then(res => {
+            console.log(res.data)
+            return res.data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
 
 const getModuleFromString = (bundle, filename) => {
     const m = { exports: {} };
@@ -80,12 +95,14 @@ const handleSSR = async (ctx) => {
     }
 
     // 读取客户端的模版文件
-    const template = fs.readFileSync(
-        path.join(__dirname, '../../server.template.ejs'),
-        'utf-8'
-    )
-
+    let template = await getTemplateFromClient();
+   //     ctx.body = template;
+    // .then(template => {
+ 
+    // });
+    console.log(template)
     await serverRender(ctx, serverBundle, template)
+
 }
 
 

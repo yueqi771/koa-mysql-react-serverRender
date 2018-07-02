@@ -4,8 +4,8 @@
   "description": "a project of react server render",
   "main": "App.jsx",
   "scripts": {
-    "build:client": "webpack --config ./build/webpack.prod.conf.js",
-    "build:server": "webpack --config ./build/webpack.server.conf.js",
+    "build:client": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.conf.js",
+    "build:server": "cross-env NODE_ENV=production webpack --config ./build/webpack.server.conf.js",
     "build": "npm run clear && npm run build:client && npm run build:server",
     "clear": "rimraf dist",
     "dev:client": "cross-env NODE_ENV=development webpack-dev-server --open --config ./build/webpack.client.conf.js",
@@ -23,6 +23,7 @@
     "ejs-compiled-loader": "^1.1.0",
     "element-ui": "^2.2.2",
     "fs": "^0.0.1-security",
+    "http-proxy-middleware": "^0.17.4",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-mysql-session": "^0.0.2",
@@ -35,6 +36,8 @@
     "markdown-it": "^8.4.0",
     "md5": "^2.2.1",
     "mini-css-extract-plugin": "^0.4.0",
+    "mobx": "^3.2.2",
+    "mobx-react": "^4.3.5",
     "moment": "^2.18.1",
     "mysql": "^2.15.0",
     "nodemon": "^1.17.3",
@@ -46,9 +49,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "serialize-javascript": "^1.4.0",
-    "serve-favicon": "^2.4.5",
-    "mobx": "^3.2.2",
-    "mobx-react": "^4.3.5"
+    "serve-favicon": "^2.4.5"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -78,6 +79,7 @@
     "has": "^1.0.1",
     "html-webpack-plugin": "^3.2.0",
     "http-proxy-middleware": "^0.17.4",
+    "koa-proxy2": "^0.11.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "memory-fs": "^0.4.1",
