@@ -2,7 +2,9 @@ const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf');
+
 
 module.exports = merge(baseWebpackConfig, {
     mode: 'development',
@@ -16,7 +18,7 @@ module.exports = merge(baseWebpackConfig, {
             path.join(__dirname, '../client/server-entry.js')
         ]
     },
-
+    
     // webpack打包的时候不加入打包的依赖
     externals: Object.keys(require('../package.json').dependencies),
 
@@ -30,12 +32,28 @@ module.exports = merge(baseWebpackConfig, {
         libraryTarget: "commonjs2"
     },
 
+    module: {
+        rules: [
+            {
+                test:/\.less/,
+                use:ExtractTextPlugin.extract({
+                    use: ["css-loader", "less-loader"],
+                    fallback:"style-loader"
+                })
+            },
+        ]
+    },
+
     plugins: [
         new webpack.DefinePlugin({
             'process.env.API_BASE': JSON.stringify('http://127.0.0.1:3000')
         }),
-        // new HtmlWebpackPlugin({
-		// 	template: '!!ejs-compiled-loader!' + path.join(__dirname, '../server.template.ejs'),
-		// })
+
+        // 单独打包css
+        new ExtractTextPlugin({
+            filename: '[name].[hash].css',
+            allChunks: true
+        }),
+        
     ]
 })

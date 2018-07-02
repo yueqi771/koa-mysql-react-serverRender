@@ -32,7 +32,7 @@ module.exports = {
             },
             {
 				test: /\.ejs$/,
-				loader: "ejs-loader",
+				loader: "ejs-compiled-loader!ejs-loader",
             },
 			{
 				test: /\.css$/,
@@ -43,7 +43,7 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                loader: "style-loader!css-loader!less-loader"
+                loader: "css-loader!less-loader",
             },
 			{
 				test: /\.jsx$/,

@@ -1,11 +1,12 @@
 import React from 'react';
 import Component from '@utils/component';
+import Index from '@pages/Index/index'
+
 
 const RouteMap = [
     {
         path: '/index',
-        component: Component.Async(() =>
-            import ('@pages/Index/index')),
+        component: Index,
         exact: 'true'
     },
 ]

@@ -11,7 +11,7 @@ import "./index.less"
 class Index extends Component {
     render() {
         return(
-            <div> 这里是INDEX页面{this.props.userInfo.name}</div>
+            <div className="index"> 这里是INDEX页面{this.props.userInfo.name}</div>
         ) 
     }
 }

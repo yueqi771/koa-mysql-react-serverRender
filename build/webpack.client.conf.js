@@ -15,15 +15,14 @@ module.exports = merge(baseWebpackConfig, {
 
     output: {
         path: path.join(__dirname, '../dist'),
-        publicPath: '/',
+        publicPath: '/static/',
         filename: "js/[name].js"
     },
     
     module: {
-        rules: [{
-            test: /\.less$/,
-            loader: "style-loader!css-loader!less-loader"
-        }]
+        rules: [
+            
+        ]
     },
     devtool: "#cheap-module-eval-source-map",
     plugins: [
@@ -43,11 +42,10 @@ module.exports = merge(baseWebpackConfig, {
         }),
 
         new HtmlWebpackPlugin({
-			template: '!!ejs-compiled-loader!' + path.join(__dirname, '../server.template.ejs'),
-			filename: 'server.ejs'
-		})
-
-
+            template: path.join(__dirname,'../server.template.ejs'),
+            filename: 'server.ejs',
+            inject: true,
+        })
     ],
 
     devServer: {

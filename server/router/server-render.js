@@ -26,12 +26,11 @@ module.exports = async (ctx, bundle, template) => {
 
         const app = createApp(stores, routerContext, context.url);
 
-
             await asyncBootstrap(app)
             // 如果路由中有redirect， 那么直接把路由定向到redirect的页面
             if(routerContext.url) {
                 res.status(302).setHeader('Location', routerContext.url);
-                ctx.body = "123";
+                ctx.body = "重定向路由";
                 return;
             }
 
@@ -40,12 +39,14 @@ module.exports = async (ctx, bundle, template) => {
             const state = getStoreState(stores);
             const content = await ReactDomServer.renderToString(app);
 
+            console.log('helmet.style--------------')
             console.log(helmet.style.toString())
 
             const html = ejs.render(template, {
                 appString: content,
                 initialState: serialize(state),
                 style: helmet.style.toString(),
+                link: helmet.link.toString(),
             })
             ctx.body = html;
 

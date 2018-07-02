@@ -62,7 +62,6 @@ serverCompiler.watch({}, (err, status) => {
         serverConfig.output.filename
     )
 
-
     // 读取文件内容
     bundle = mfs.readFileSync(bundlePath, 'utf-8');
 
@@ -94,8 +93,4 @@ const router = require('koa-router')();
 
 router.get('*', handleSSR)
 
-// router.get('*', async function (ctx, next) {
-//     ctx.body = "123123";
-  
-// });
 module.exports = router

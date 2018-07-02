@@ -8,12 +8,12 @@ const baseConf = require('./webpack.base.conf');
 module.exports = merge(baseConf, {
     mode: "production",
     entry: {
-        app: ["babel-polyfill","./src/main.js"],
+        app: ["babel-polyfill", "./client/main.js"],
     },
     output: {
         path: path.resolve(__dirname, "../dist"),
         filename: "js/[name].[chunkhash:8].js",
-        publicPath: "./"
+        publicPath: "/static/"
     },
     module: {
         rules: [
