@@ -22,7 +22,7 @@ const NativeModule = require('module');
 
 const getTemplateFromClient = () => {
 		// 此处暂时是死路径，可以写成活的,文件命名由webpack.client.conf决定
-    return axios.get('http://localhost:8087/static/server.ejs')
+    return axios.get('http://localhost:7000/static/server.ejs')
         .then(res => {
             console.log(res.data)
             return res.data
