@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Input, Icon, Button } from 'antd';
+import { Input, Icon } from 'antd';
+
+import Button from '@components/Button/button';
 import './login.less';
 
 class Login extends Component {
@@ -33,7 +35,7 @@ class Login extends Component {
                         prefix={<Icon type="unlock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     />
 
-                    <Button type="primary" className="login-btn btn-border">登录</Button>
+                    <Button text="登录" loading={false} />
                 </div>
 
             </div>
