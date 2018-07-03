@@ -10,13 +10,12 @@ import AppContainer from './App'
 const initialState = window.__INITIAL__STATE__ || {}
 
 const render = Component => {
-    ReactDom.render(
+    const renderMethod = module.hot ? ReactDom.render : ReactDom.hydrate;
+    ReactDom.hydrate(
         <Provider state={store}>
             <BrowserRouter redirect={createHashHistory()}>
                 <div style={{height:'100%'}}>
                     <Route path="/" render={() => <Redirect to="/index" />} exact />
-
-                    
                     <Component />
                 </div>
             </BrowserRouter>
@@ -24,5 +23,10 @@ const render = Component => {
         document.getElementById('root')
     )
 }
-
+// if (module.hot) {
+//     module.hot.accept('./App.jsx', () => {
+//         const NextApp = require('./App.jsx').default; 
+//         render(render(<NextApp/>))
+//     })
+// }
 render(AppContainer)
