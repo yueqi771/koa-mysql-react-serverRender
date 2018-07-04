@@ -24,11 +24,11 @@ class Button extends Component {
                     null
                 }
 
-                <p  className="btn-text">{ text }</p>
+                <p  className="btn-text" onClick={handleClick}>{ text }</p>
             </div>
         )
         
     }
 }
 
-export default Button;
+export { Button }

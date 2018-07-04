@@ -11,7 +11,7 @@ class RouterMap extends Component{
     render() {
         return (
             <Switch>
-                {/* <Route key="index" path="/index" Component={ Index } exact /> */}
+                {/* <Route key="index" path="/index" Component={ Index } exact /> */};
                 {
                     RouteMap.map((item, index) => 
                         <Route key={index} path={item.path} render={matchProps => <item.component {...matchProps} exact={item.exact} />} />)

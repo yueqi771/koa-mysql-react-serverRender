@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import { Input, Icon } from 'antd';
 
-import Button from '@components/Button/button';
+import { Button } from '@components/Button/button';
 import './login.less';
 
 class Login extends Component {
     constructor() {
-        super(...arguments)
+        super(...arguments);
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
      
     }
+
+    // 确认登录
+    handleClick() {
+        alert('确认登录')
+    }
+
     // 
     render() {
         return (
@@ -35,7 +43,7 @@ class Login extends Component {
                         prefix={<Icon type="unlock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     />
 
-                    <Button text="登录" loading={false} />
+                    <Button text="登录" loading={false} handleClick={this.handleClick} />
                 </div>
 
             </div>

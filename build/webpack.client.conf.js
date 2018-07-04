@@ -9,6 +9,7 @@ module.exports = merge(baseWebpackConfig, {
     mode: 'development',
     entry: {
         app: [
+            // "babel-polyfill",
             // 'react-hot-loader/patch',
             path.join(__dirname, '../client/main.js')
         ]

@@ -2,6 +2,7 @@ import React from 'react';
 import Component from '@utils/component';
 import Index from '@pages/Index/index'
 import Login from '@pages/User/login'
+import Register from '@pages/User/register'
 
 
 const RouteMap = [
@@ -14,6 +15,12 @@ const RouteMap = [
     {
         path: '/login',
         component: Login,
+        exact: 'true'
+    },
+
+    {
+        path: '/register',
+        component: Register,
         exact: 'true'
     },
 ]

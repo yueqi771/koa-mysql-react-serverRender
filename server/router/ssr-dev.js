@@ -98,7 +98,7 @@ const handleSSR = async (ctx) => {
     // ctx.body = {code: 1, complete: true};
 
 	// 读取客户端的模版文件
-	let template = await getTemplateFromClient();
+    let template = await getTemplateFromClient();
 
 	await serverRender(ctx, serverBundle, template)
 

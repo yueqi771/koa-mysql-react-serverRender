@@ -36,6 +36,7 @@ module.exports = async (ctx, bundle, template) => {
         const helmet = Helmet.rewind();
         const state = getStoreState(stores);
         const content = await ReactDomServer.renderToString(app);
+        console.log(content)
 
         const html = ejs.render(template, {
             appString: content,

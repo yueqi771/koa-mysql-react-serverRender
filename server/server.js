@@ -15,11 +15,9 @@ const isDev= process.env.NODE_ENV === 'development';
 renderRouter = isDev ? require('./router/ssr-dev') : require('./routers/ssr')
 
 // 配置路由
-app.use(require('./router/user.js').routes());
+
 // 配置静态资源加载中间件
 app.use(koaStatic(path.join(__dirname, '../static')))
-
-
 app.use(proxy({
     proxy_rules: [
       {
@@ -30,8 +28,8 @@ app.use(proxy({
       }
     ]
 }));
+app.use(require('./router/user.js').routes());
 app.use(renderRouter.routes()).use(renderRouter.allowedMethods());
-
 
 // 监听一个服务器
 const HOST = process.env.HOST || '0.0.0.0';
