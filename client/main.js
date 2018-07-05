@@ -23,10 +23,10 @@ const render = Component => {
         document.getElementById('root')
     )
 }
-if (module.hot) {
-    module.hot.accept('./App.jsx', () => {
-        const NextApp = require('./App.jsx').default; 
-        render(render(<NextApp/>))
-    })
-}
+// if (module.hot) {
+//     module.hot.accept('./App.jsx', () => {
+//         const NextApp = require('./App.jsx').default; 
+//         render(render(<NextApp/>))
+//     })
+// }
 render(AppContainer)

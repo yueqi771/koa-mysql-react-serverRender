@@ -103,10 +103,25 @@ input[type="number"] {
     height: 100%;
 }
 
-a:hover {
-    color: #333;
+.shadow{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    z-index: 2;
 }
 
-.ant-message .anticon {
-	display: none!important;
+.shadow-bk{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    filter: blur(8px);
+    background-size: cover;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 3;
+    
 }

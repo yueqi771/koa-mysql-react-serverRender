@@ -28,7 +28,6 @@ class Login extends Component {
                 <div className="shadow" style={{ backgroundImage: 'url(http://localhost:3000/images/bk6.jpg)' }}></div>
                 <div className="shadow-bk"></div>
 
-
                 <div className="login-container">
                     <p className="title">登录</p>
 

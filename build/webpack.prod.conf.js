@@ -56,10 +56,10 @@ module.exports = merge(baseConf, {
                     use:'css-loader'
                 })
             },  
-            {
-				test: /\.ejs$/,
-				loader: "ejs-compiled-loader!ejs-loader",
-            },
+            // {
+			// 	test: /\.ejs$/,
+			// 	loader: "ejs-compiled-loader!ejs-loader",
+            // },
         ]
     },
     plugins: [
@@ -87,7 +87,7 @@ module.exports = merge(baseConf, {
         }),
 
         new HtmlWebpackPlugin({
-            template: path.join(__dirname,'../server.template.ejs'),
+            template: '!!ejs-compiled-loader!' + path.join(__dirname,'../server.template.ejs'),
             filename: 'server.ejs',
             inject: true,
         })

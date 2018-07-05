@@ -6,6 +6,277 @@
   text-align: center;
   padding-top: 1rem;
 }
+.button {
+  width: 100%;
+  height: 40px;
+  position: relative;
+}
+.button .loading-btn {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  text-align: center;
+  background: #69b7ff;
+  border-radius: 3px;
+  cursor: default;
+  line-height: 100%;
+  line-height: 36px;
+  font-size: 19px;
+  color: #fff;
+  padding-right: 10px;
+}
+.button .loading-btn i {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 14px;
+}
+.button .btn-text {
+  width: 100%;
+  height: 100%;
+  background: #4ba8c9;
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+  margin-top: 35px;
+  border-radius: 3px;
+  position: relative;
+  transition: all .3s;
+  cursor: pointer;
+}
+.button .btn-text:hover {
+  background: transparent;
+  color: #4ba8c9;
+}
+.button .btn-text:hover:before {
+  width: 100%;
+}
+.button .btn-text:hover:after {
+  height: 100%;
+}
+.button .btn-text:before,
+.button .btn-text:after {
+  content: '';
+  border-style: solid;
+  position: absolute;
+  z-index: 5;
+  border-radius: 3px;
+  box-sizing: content-box;
+  border-color: #4ba8c9;
+  transition: all 0.4s;
+}
+.button .btn-text:before {
+  width: 0;
+  height: 100%;
+  border-width: 1px 0 1px 0;
+  top: -1px;
+  right: 0;
+  -webkit-transition-delay: 0.05s;
+  transition-delay: 0.05s;
+}
+.button .btn-text:after {
+  width: 100%;
+  height: 0;
+  border-width: 0 1px 0 1px;
+  bottom: 0;
+  left: -1px;
+}
+.login {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login .shadow {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  z-index: 2;
+}
+.login .shadow-bk {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  filter: blur(8px);
+  background-size: cover;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 3;
+}
+.login .login-container {
+  width: 400px;
+  min-height: 302px;
+  background: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 10;
+  border-radius: 4px;
+  padding: 20px 58px;
+  box-shadow: 0 2px 21px 0 rgba(255, 255, 255, 0.8);
+}
+.login .login-container .title {
+  margin: 10px 0 ;
+  text-align: center;
+  font-size: 20px;
+}
+.login .login-container .user-input {
+  margin-top: 20px;
+}
+.login .login-container .login-btn {
+  width: 100%;
+  margin-top: 30px;
+}
+.login .login-container .ant-btn-primary:hover,
+.login .login-container .ant-btn-primary:focus {
+  color: #40a9ff!important;
+  background-color: transparent!important;
+  border: none;
+}
+.ant-btn:hover {
+  background: transparent;
+}
+.register {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register .register-container {
+  width: 400px;
+  min-height: 302px;
+  background: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 10;
+  border-radius: 4px;
+  padding: 20px 58px;
+  box-shadow: 0 2px 21px 0 rgba(255, 255, 255, 0.8);
+}
+.register .register-container .title {
+  margin: 10px 0 ;
+  text-align: center;
+  font-size: 20px;
+}
+.register .register-container .user-input {
+  margin-top: 20px;
+}
+.register .register-container .login-btn {
+  width: 100%;
+  margin-top: 30px;
+}
+.loading {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+  left: 0px;
+  top: 0px;
+  background-color: #ffffff;
+}
+.loading svg {
+  width: 300px;
+  margin-top: -25px;
+  margin-left: -150px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  enableBackground: new 0 0 158.1 24.1;
+}
+.loading .st3 {
+  fill: #000000;
+}
+.loading .mark .mark04 {
+  stroke: none;
+  fill: #000;
+  animation-name: animeLoading01;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-delay: 0.75s;
+  -webkit-animation-name: animeLoading01;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.75s;
+}
+.loading .mark .mark03 {
+  stroke: none;
+  fill: #000;
+  animation-name: animeLoading01;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-delay: 0.50s;
+  -webkit-animation-name: animeLoading01;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.50s;
+}
+.loading .mark .mark02 {
+  stroke: none;
+  fill: #000;
+  animation-name: animeLoading01;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-delay: 0.25s;
+  -webkit-animation-name: animeLoading01;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.25s;
+}
+.loading .mark .mark01 {
+  stroke: none;
+  fill: #000;
+  animation-name: animeLoading01;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  -webkit-animation-name: animeLoading01;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  -webkit-animation-fill-mode: forwards;
+}
+@keyframes animeLoading01 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes animeLoading01 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 @charset "utf-8";
 /*reset*/
 body,button,input,select,textarea {font: 100%/1 "Helvetica Neue", Helvetica, STHeiTi, "Microsoft YaHei";}
@@ -50,7 +321,7 @@ html,body {
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     color: #000000;
-    font-size: 13.33vw !important;
+    font-size: 14px;
     background: #fff!important;
     overflow: visible;
 }
@@ -111,14 +382,28 @@ input[type="number"] {
     height: 100%;
 }
 
-a:hover {
-    color: #333;
+.shadow{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    z-index: 2;
 }
 
-.ant-message .anticon {
-	display: none!important;
+.shadow-bk{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    filter: blur(8px);
+    background-size: cover;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 3;
+    
 }
-
 @font-face {font-family: "iconfont";
   src: url(http://127.0.0.1:7000/static/fonts/c758d46721fb.eot); /* IE9*/
   src: url(http://127.0.0.1:7000/static/fonts/c758d46721fb.eot#iefix) format('embedded-opentype'), 

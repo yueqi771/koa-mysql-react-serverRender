@@ -1,9 +1,17 @@
-module.exports = function (obj) {
-obj || (obj = {});
-var __t, __p = '';
-with (obj) {
-__p += 'module.exports = function anonymous(locals, filters, escape, rethrow) {\n    escape = escape || function(html) {\n        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\'/g, "&#39;").replace(/"/g, "&quot;");\n    };\n    var __stack = {\n        lineno: 1,\n        input: \'module.exports = function (obj) {\\nobj || (obj = {});\\nvar __t, __p = \\\'\\\', __e = _.escape;\\nwith (obj) {\\n__p += \\\'<!DOCTYPE html>\\\\r\\\\n<html lang="en">\\\\r\\\\n<head>\\\\r\\\\n    <meta charset="UTF-8">\\\\r\\\\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\\\\r\\\\n    <title>越祈</title>\\\\r\\\\n    <meta http-equiv="X-UA-Compatible" content="ie=edge"> \\\\r\\\\n    \\\' +\\n__e( style ) +\\n\\\'\\\\r\\\\n\\\\r\\\\n    \\\' +\\n__e( link ) +\\n\\\'\\\\r\\\\n    <script src="https://cdn.bootcss.com/babel-polyfill/7.0.0-beta.49/polyfill.min.js"></script>\\\\r\\\\n<link href="http://127.0.0.1:7000/static/app.8685bd25c017bb8dda84.css" rel="stylesheet"></head>\\\\r\\\\n<body>\\\\r\\\\n\\\\r\\\\n    <div id="root">\\\' +\\n__e( appString  ) +\\n\\\'</div>\\\\r\\\\n\\\\r\\\\n    <script>\\\\r\\\\n        window.__INITIAL_STATE__ = \\\' +\\n__e( initialState ) +\\n\\\'\\\\r\\\\n    </script>\\\\r\\\\n<script type="text/javascript" src="http://127.0.0.1:7000/static/js/vendor.8ea99526.js"></script><script type="text/javascript" src="http://127.0.0.1:7000/static/js/app.6efe9f8c.js"></script></body>\\\\r\\\\n</html>\\\';\\n\\n}\\nreturn __p\\n}\',\n        filename: "."\n    };\n    function rethrow(err, str, filename, lineno) {\n        var lines = str.split("\\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);\n        var context = lines.slice(start, end).map(function(line, i) {\n            var curr = i + start + 1;\n            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;\n        }).join("\\n");\n        err.path = filename;\n        err.message = (filename || "ejs") + ":" + lineno + "\\n" + context + "\\n\\n" + err.message;\n        throw err;\n    }\n    try {\n        var buf = [];\n        with (locals || {}) {\n            (function() {\n                buf.push(\'module.exports = function (obj) {\\nobj || (obj = {});\\nvar __t, __p = \\\'\\\', __e = _.escape;\\nwith (obj) {\\n__p += \\\'<!DOCTYPE html>\\\\r\\\\n<html lang="en">\\\\r\\\\n<head>\\\\r\\\\n    <meta charset="UTF-8">\\\\r\\\\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\\\\r\\\\n    <title>越祈</title>\\\\r\\\\n    <meta http-equiv="X-UA-Compatible" content="ie=edge"> \\\\r\\\\n    \\\' +\\n__e( style ) +\\n\\\'\\\\r\\\\n\\\\r\\\\n    \\\' +\\n__e( link ) +\\n\\\'\\\\r\\\\n    <script src="https://cdn.bootcss.com/babel-polyfill/7.0.0-beta.49/polyfill.min.js"></script>\\\\r\\\\n</head>\\\\r\\\\n<body>\\\\r\\\\n\\\\r\\\\n    <div id="root">\\\' +\\n__e( appString  ) +\\n\\\'</div>\\\\r\\\\n\\\\r\\\\n    <script>\\\\r\\\\n        window.__INITIAL_STATE__ = \\\' +\\n__e( initialState ) +\\n\\\'\\\\r\\\\n    </script>\\\\r\\\\n</body>\\\\r\\\\n</html>\\\';\\n\\n}\\nreturn __p\\n}\');\n            })();\n        }\n        return buf.join("");\n    } catch (err) {\n        rethrow(err, __stack.input, __stack.filename, __stack.lineno);\n    }\n}';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <%- style %>
 
-}
-return __p
-}
+    <%- link %>
+<link href="http://127.0.0.1:7000/static/app.277c4252d86210637883.css" rel="stylesheet"></head>
+<body>
+    <div id="root"><%- appString  %></div>
+    <script>
+        window.__INITIAL_STATE__ = <%- initialState %>
+    </script>
+<script type="text/javascript" src="http://127.0.0.1:7000/static/server-entry.js"></script></body>
+</html>

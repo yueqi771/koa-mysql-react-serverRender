@@ -52,13 +52,13 @@ module.exports = merge(baseWebpackConfig, {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.join(__dirname, '../index.html'),
-            inject: true
+            // inject: true
         }),
 
         new HtmlWebpackPlugin({
             template: '!!ejs-compiled-loader!' + path.join(__dirname,'../server.template.ejs'),
             filename: 'server.ejs',
-            inject: true,
+            // inject: true,
         })
     ],
 

@@ -6,7 +6,6 @@ import '@style/common.css';
 import '@fonts/iconfont.css';
 import 'antd/dist/antd.css';
 
-
 class App extends Component {
     constructor() {
         super(...arguments);

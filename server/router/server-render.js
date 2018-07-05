@@ -14,8 +14,7 @@ const getStoreState = (stores) => {
 
 module.exports = async (ctx, bundle, template) => {
     ctx.headers['ContentType'] = 'text/html';
-    // url: ctx.path
-    const context = { };
+    const context = { url: ctx.path };
 
     try {
         const stores = bundle.createStoreMap();
@@ -25,18 +24,10 @@ module.exports = async (ctx, bundle, template) => {
 
         await asyncBootstrap(app);
 
-        // 如果路由中有redirect， 那么直接把路由定向到redirect的页面
-        if(routerContext.url) {
-            res.status(302).setHeader('Location', routerContext.url);
-            ctx.body = "重定向路由";
-            return;
-        }
-
         // 定义当前页面需要显示的title, description内容
         const helmet = Helmet.rewind();
         const state = getStoreState(stores);
         const content = await ReactDomServer.renderToString(app);
-        console.log(content)
 
         const html = ejs.render(template, {
             appString: content,
