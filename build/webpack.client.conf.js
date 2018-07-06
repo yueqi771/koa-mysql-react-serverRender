@@ -10,7 +10,7 @@ module.exports = merge(baseWebpackConfig, {
     entry: {
         app: [
             // "babel-polyfill",
-            // 'react-hot-loader/patch',
+            'react-hot-loader/patch',
             path.join(__dirname, '../client/main.js')
         ]
     },
@@ -24,12 +24,18 @@ module.exports = merge(baseWebpackConfig, {
         rules: [
             {
                 test:/\.less/,
-				loader: "style-loader!css-loader!less-loader",
+                use:ExtractTextPlugin.extract({
+                    use: ["css-loader", "less-loader"],
+                    fallback:"style-loader"
+                })
             },
             {
                 test:/\.css/,
-				loader: "style-loader!css-loader",
-            },  
+                use:ExtractTextPlugin.extract({
+                    fallback:'style-loader',
+                    use:'css-loader'
+                })
+            }, 
         ]
     },
     devtool: "#cheap-module-eval-source-map",
@@ -52,13 +58,13 @@ module.exports = merge(baseWebpackConfig, {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.join(__dirname, '../index.html'),
-            // inject: true
+            inject: true,
         }),
 
         new HtmlWebpackPlugin({
             template: '!!ejs-compiled-loader!' + path.join(__dirname,'../server.template.ejs'),
             filename: 'server.ejs',
-            // inject: true,
+            inject: true
         })
     ],
 

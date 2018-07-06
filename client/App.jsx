@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import loadsh from 'lodash'
+
 import RouterMap from './routers/index';
 import Loading from '@components/Loading' 
 import http from '@utils/http'
@@ -7,6 +9,13 @@ import '@fonts/iconfont.css';
 import 'antd/dist/antd.css';
 
 class App extends Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        if(_.isEqual(this.props, nextProps) && _.isEqual(this.state, nextState)){
+            return false
+        }
+        return true
+    }
+    
     constructor() {
         super(...arguments);
 

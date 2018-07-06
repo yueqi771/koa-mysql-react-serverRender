@@ -6,6 +6,13 @@ import { Button } from '@components/Button/button';
 import './register.less'
 
 class Register extends Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        if(_.isEqual(this.props, nextProps) && _.isEqual(this.state, nextState)){
+            return false
+        }
+        return true
+    }
+
     render() {
         console.log('123123')
         return (
@@ -33,7 +40,7 @@ class Register extends Component {
                 </div>
 
                 {/* 注册页面背景 */}
-                <div className="shadow" style={{ backgroundImage: 'url(http://localhost:3000/images/bk6.jpg)' }}></div>
+                <div className="shadow" style={{ backgroundImage: 'url(http://localhost:3000/images/bk.jpg)' }}></div>
                 <div className="shadow-bk"></div>
 
             </div>

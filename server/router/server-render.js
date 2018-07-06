@@ -14,13 +14,13 @@ const getStoreState = (stores) => {
 
 module.exports = async (ctx, bundle, template) => {
     ctx.headers['ContentType'] = 'text/html';
-    const context = { url: ctx.path };
+    // const context = { url: ctx.path };
 
     try {
         const stores = bundle.createStoreMap();
-        const routerContext = {};
+        const routerContext = {  };
         const createApp = bundle.default;
-        const app = createApp(stores, routerContext, context.url);
+        const app = createApp(stores, routerContext, ctx.url);
 
         await asyncBootstrap(app);
 
@@ -29,12 +29,19 @@ module.exports = async (ctx, bundle, template) => {
         const state = getStoreState(stores);
         const content = await ReactDomServer.renderToString(app);
 
+        // 服务器端处理redirect，路由跳转
+        if (routerContext.url) {
+            ctx.status = 302; 
+            ctx.redirect(routerContext.url);
+            return;
+        }
+
         const html = ejs.render(template, {
             appString: content,
             initialState: serialize(state),
             title: helmet.title.toString(),
             style: helmet.style.toString(),
-            link: helmet.link.toString(),
+            link: helmet.link.toString(), 
         })
 
         ctx.body = html;

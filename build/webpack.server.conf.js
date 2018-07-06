@@ -1,20 +1,16 @@
 const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf');
 
 
 module.exports = merge(baseWebpackConfig, {
-    mode: 'development',
     // js打包出来的内容使用于哪个执行环境
     target: "node",
 
     entry: {
         app: [
-            // "babel-polyfill",
-            // 'react-hot-loader/patch',
             path.join(__dirname, '../client/server-entry.js')
         ]
     },
@@ -27,7 +23,7 @@ module.exports = merge(baseWebpackConfig, {
         // 打包出来的名字
         filename: "server-entry.js",
         path: path.join(__dirname, '../dist'),
-        // publicPath: 'http://127.0.0.1:7000/static/',
+        publicPath: 'http://127.0.0.1:7000/static/',
         // 打包出来的js的模块化方案
         libraryTarget: "commonjs2"
     },
@@ -57,11 +53,6 @@ module.exports = merge(baseWebpackConfig, {
             allChunks: true
         }),
 
-        new HtmlWebpackPlugin({
-            template: '!!ejs-compiled-loader!' + path.join(__dirname,'../server.template.ejs'),
-            filename: 'server.ejs',
-            // inject: true,
-        })
     ],
 
 })
