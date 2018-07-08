@@ -40,12 +40,6 @@ module.exports = merge(baseWebpackConfig, {
     },
     devtool: "#cheap-module-eval-source-map",
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('develop'),
-                API_ENV: JSON.stringify('devalop'),
-            }
-        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
 

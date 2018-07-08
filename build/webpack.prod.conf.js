@@ -90,7 +90,8 @@ module.exports = merge(baseConf, {
             template: '!!ejs-compiled-loader!' + path.join(__dirname,'../server.template.ejs'),
             filename: 'server.ejs',
             inject: true,
-        })
+        }),
+        
 
     ]
 })

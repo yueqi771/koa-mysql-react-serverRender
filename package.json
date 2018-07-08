@@ -9,7 +9,7 @@
     "build": "npm run clear && npm run build:client && npm run build:server",
     "clear": "rimraf dist",
     "dev:client": "cross-env NODE_ENV=development webpack-dev-server --open --config ./build/webpack.client.conf.js",
-    "dev:server": "nodemon server/server.js",
+    "dev:server": "cross-env NODE_ENV=development nodemon server/server.js",
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
     "start": "cross-env NODE_ENV=production nodemon server/server.js"
   },

@@ -1,6 +1,6 @@
 const path = require('path');
+const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
 	target: "web",
@@ -77,7 +77,11 @@ module.exports = {
 
     plugins: [
 
-        
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: process.env.NODE_ENV === 'development' ? '"development"' : '"production"'
+            }
+        }),
         
     ]
 

@@ -6,6 +6,7 @@ const baseWebpackConfig = require('./webpack.base.conf');
 
 
 module.exports = merge(baseWebpackConfig, {
+    mode: "development",
     // js打包出来的内容使用于哪个执行环境
     target: "node",
 
@@ -52,6 +53,10 @@ module.exports = merge(baseWebpackConfig, {
             filename: '[name].[hash].css',
             allChunks: true
         }),
+
+        // new webpack.DefinePlugin({
+        //     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+        // }),
 
     ],
 

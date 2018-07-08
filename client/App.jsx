@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import loadsh from 'lodash'
+import { Route, Redirect } from 'react-router-dom';
+
 
 import RouterMap from './routers/index';
 import Loading from '@components/Loading' 
@@ -39,6 +41,7 @@ class App extends Component {
                 {/* {
                     loading ? <Loading /> : null
                 } */}
+                <Route path="/" render={() => <Redirect to="/index" />} exact />
                 <RouterMap />
             </div>
         ) 

@@ -43,7 +43,7 @@
   margin-top: 35px;
   border-radius: 3px;
   position: relative;
-  transition: all .3s;
+  transition: all 0.3s;
   cursor: pointer;
 }
 .button .btn-text:hover {
@@ -134,7 +134,7 @@
 }
 .login .login-container .ant-btn-primary:hover,
 .login .login-container .ant-btn-primary:focus {
-  color: #40a9ff!important;
+  color: #40a9ff !important;
   background-color: transparent!important;
   border: none;
 }
@@ -218,14 +218,14 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-fill-mode: forwards;
-  animation-delay: 0.50s;
+  animation-delay: 0.5s;
   -webkit-animation-name: animeLoading01;
   -webkit-animation-duration: 1s;
   -webkit-animation-timing-function: ease-in-out;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-direction: alternate;
   -webkit-animation-fill-mode: forwards;
-  -webkit-animation-delay: 0.50s;
+  -webkit-animation-delay: 0.5s;
 }
 .loading .mark .mark02 {
   stroke: none;

@@ -40,7 +40,7 @@ let user =
         mobile CHAR(15) CHARACTER SET utf8 NOT NULL COMMENT '手机号',
         password VARCHAR(32) CHARACTER SET utf8 NOT NULL COMMENT '密码',
         timezone VARCHAR(36) CHARACTER SET utf8 COMMENT '地区',
-        sex VARCHAR(10) CHARACTER SET utf8 COMMENT '性别',
+        wechat VARCHAR(32) CHARACTER SET utf8 COMMENT '微信',
         description VARCHAR(36) CHARACTER SET utf8 NOT NULL COMMENT '签名',
         PRIMARY KEY (id)
     );`

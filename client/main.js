@@ -13,11 +13,8 @@ const render = Component => {
     const renderMethod = module.hot ? ReactDom.render : ReactDom.hydrate;
     ReactDom.hydrate(
         <Provider state={store}>
-            <BrowserRouter redirect={createHashHistory()}>
-                <div style={{height:'100%'}}>
-                    <Route path="/" render={() => <Redirect to="/index" />} exact />
-                    <Component />
-                </div>
+            <BrowserRouter>
+                <Component />
             </BrowserRouter>
         </Provider>,
         document.getElementById('root')

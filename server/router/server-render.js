@@ -22,7 +22,7 @@ module.exports = async (ctx, bundle, template) => {
         const createApp = bundle.default;
         const app = createApp(stores, routerContext, ctx.url);
 
-        await asyncBootstrap(app);
+        asyncBootstrap(app);
 
         // 定义当前页面需要显示的title, description内容
         const helmet = Helmet.rewind();

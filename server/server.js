@@ -11,10 +11,10 @@ const koaStatic = require('koa-static');
 const app = new Koa();
 
 // 判断当前环境
-const isDev= process.env.NODE_ENV === 'development';
-renderRouter = isDev ? require('./router/ssr-dev') : require('./routers/ssr')
+const isDev = process.env.NODE_ENV === 'development';
+console.log(isDev)
+renderRouter = isDev ? require('./router/ssr-dev') : require('./router/ssr')
 
-// 配置路由
 
 // 配置静态资源加载中间件
 app.use(koaStatic(path.join(__dirname, '../static')))
@@ -28,6 +28,8 @@ app.use(proxy({
       }
     ]
 }));
+
+// 配置路由
 app.use(require('./router/user.js').routes());
 app.use(renderRouter.routes()).use(renderRouter.allowedMethods());
 
