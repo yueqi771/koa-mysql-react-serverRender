@@ -7,23 +7,25 @@
 
     // 登录盒子
     .register-container{
-        width: 480px;
+        width: 424px;
         min-height: 302px;
         background: rgba(255, 255, 255, 0.8);
         position: relative;
         z-index: 10;
         border-radius: 4px;
-        padding: 20px 45px 0 10px;
+        padding: 20px 10px 20px 10px;
         box-shadow: 0 2px 21px 0 rgba(255, 255, 255, 0.8);
 
         // 登录标题
         .title{
-            margin: 10px 0 ;
+            margin: 10px 0;
             text-align: center;
             font-size: 20px;
+            padding-left: 35px;
         }
 
         .code-wrapper{
+            margin-bottom: 16px;
             .button{
                 height: 0;
             }
@@ -37,20 +39,36 @@
 
         .submit-wrapper{
             .button{
-                width: 292px;
-                margin-left: 93px;
+                width: 326px;
+                margin-left: 45px;
+                height: 32px;
+                margin-top: -27px;
+
+                .btn-text{
+                    line-height: 32px;
+                }
             }
         }
         
-
-        .user-input{
-            margin-top: 20px;
+        .user-tip{
+            height: 33px;
+            margin-left: 46px;
         }
 
-        .login-btn{
-            width: 100%;
-            margin-top: 30px;
+        // 错误提示
+        .error-tip{
+            font-size: 13px;
+            margin: 0;
+            height: 19px;
+            position: absolute;
+            min-width: 180px;
+            bottom: -32px;
+            left: 0;
+            line-height: 19px;
+            color: #fa5555;
         }
-
     }
+}
+.mb-10{
+    margin-bottom: 10px!important;
 }

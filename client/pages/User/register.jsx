@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
+import { Link } from 'react-router-dom';
 import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, AutoComplete } from 'antd';
 
 import { Button } from '@components/Button/button';
-import './register.less'
+import regexp from '@utils/regexp';
+import './register.less';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -21,84 +23,93 @@ class Register extends Component {
         super(...arguments);
 
         this.state = {
-            confirmDirty: false,
-            autoCompleteResult: [],
-
             // 手机号
-            mobile: ""
+            mobile: "",
+            allowMobile: true,
+
+            // 验证码
+            code: "",
+            allowCode: true,
+
+            // 昵称
+            nickName: "",
+            allowName: true,
+
+            // 微信
+            wechat: "",
+            allowWechat: true,
+
+            // 密码
+            password: "",
+            allowPassword: true,
+
+            // 确认密码
+            repassword: "",
+            allowRepassword: true
         }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
-        this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
-        this.validateToNextPassword = this.validateToNextPassword.bind(this);
-
     }
 
-    handleConfirmBlur = (e) => {
-        const value = e.target.value;
-        console.log(value)
-        this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+    componentDidMount() {
+        console.log(this.state['allowCode'])
     }
 
-    compareToFirstPassword = (rule, value, callback) => {
-        const form = this.props.form;
-        console.log(form.getFieldValue('password'))
-        if (value && value !== form.getFieldValue('password')) {
-            callback('Two passwords that you enter is inconsistent!');
-        } else {
-            callback();
+    // 验证手机号
+    vertifyMobile = (e) => {
+        const mobileText = e.target ? e.target.value : "";
+
+        this.setState({
+            allowMobile: true,
+            mobile: mobileText
+        })
+
+        if(!regexp.test(this.state.mobile)){
+            this.setState({
+                allowMobile: false,
+                mobile: mobileText
+            })
+
+            return false
         }
+        
+        return true;
     }
 
-    validateToNextPassword = (rule, value, callback) => {
-        const form = this.props.form;
-        if (value && this.state.confirmDirty) {
-            form.validateFields(['confirm'], { force: true });
+    // 验证非空函数
+    vertifyEmpty = (e, tipKey, key) => {
+        const text = e.target ? e.target.value : "";
+
+        this.setState({
+            [tipKey]: true,
+            [key]: text
+        })
+
+        if(this.state[key] == ""){
+            this.setState({
+                [tipKey]: false
+            })
+
+            return false;
         }
-        callback();
+
+        return true;
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-          if (!err) {
-            console.log('Received values of form: ', values);
-          }
-        });
-    }
 
-    onFieldsChange(props, changedFields) {
-        console.log(changedFields)
-        props.onChange(changedFields);
-    }
+
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { autoCompleteResult, mobile } = this.state;
-        console.log(getFieldDecorator)
+        const { mobile, allowMobile, code, allowCode, nickName, allowName, wechat, allowWechat, password, allowPassword, repassword, allowRepassword } = this.state;
 
         const formItemLayout = {
             labelCol: {
                 xs: { span: 24 },
-                sm: { span: 8 },
+                sm: { span: 6 },
             },
             wrapperCol: {
                 xs: { span: 24 },
                 sm: { span: 16 },
-            },
-        };
-
-        const tailFormItemLayout = {
-            wrapperCol: {
-                xs: {
-                    span: 24,
-                    offset: 0,
-                },
-                sm: {
-                    span: 16,
-                    offset: 8,
-                },
             },
         };
 
@@ -124,30 +135,39 @@ class Register extends Component {
                 {/* <div className="shadow-bk"></div> */}
 
                 <div className="register-container">
-                    <p className="title">注册</p>
+                    <p className="title">欢迎注册</p>
 
                     <Form onSubmit={this.handleSubmit}>
                         {/* 手机号 */}
-                        <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} addonBefore={prefixSelector} style={{ width: '100%' }}  placeholder="Enter your mobile"/>
+                        <FormItem {...formItemLayout} label="手机" >
+                            <Input addonBefore={prefixSelector} style={{ width: '100%' }}  placeholder="Enter your mobile" onChange={e => this.vertifyMobile(e)}/>
 
-                        {/* 验证码 */}
-                        <Row gutter={4} className="code-wrapper">
-                            <Col span={12}>
-                                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Enter your code" />
-                            </Col>
-                            <Col span={10}>
-                                <Button className="get-code" text="获取验证码" loading={false} />
-                            </Col>
-                        </Row>
-
-                        {/* 请输入密码 */}
-                        <FormItem {...formItemLayout} >
-                            <Input type="password"  placeholder="Enter your password" />
+                            {
+                                !allowMobile ? <p className="error-tip">请输入正确的手机号</p> : null
+                            }
+                            
                         </FormItem>
 
-                        {/* 确认输入密码 */}
-                        <FormItem {...formItemLayout} >
-                            <Input type="password"  placeholder="Confirm your password"/>
+                        {/* 验证码 */}
+                        <FormItem
+                            {...formItemLayout}
+                            label="验证码"
+                            className="code-wrapper"
+                            extra="We must make sure that your are a human."
+                        >
+                            <Row gutter={4}>
+                                <Col span={12}>
+                                    <Input  placeholder="Enter your code" onChange={e => {this.vertifyEmpty(e, 'allowCode', 'code')}} />
+                                </Col>
+                                <Col span={10}>
+                                    <Button className="get-code" text="获取验证码" loading={false} />
+                                </Col>
+                            </Row>
+                            
+                            {
+                                !allowCode ? <p className="error-tip" style={{'bottom': "-42px"}}>请输入正确的手机号</p> : null
+                            }
+                            
                         </FormItem>
 
                         {/* 昵称 */}
@@ -155,31 +175,48 @@ class Register extends Component {
                             {...formItemLayout}
                             label={(
                                 <span>
-                                    Nickname&nbsp;
+                                    昵称&nbsp;
                                     <Tooltip title="What do you want others to call you?">
                                         <Icon type="question-circle-o" />
                                     </Tooltip>
                                 </span>
                             )}
                         >
-                            <Input placeholder="Confirm your nickName" />
+                            <Input placeholder="Enter your nickName" />
+                            {
+                                !allowName ? <p className="error-tip">请输入您的姓名</p> : null
+                            }
                         </FormItem>
-                        
-                        {/* 微信 */}
-                        {/* <FormItem {...formItemLayout} label="微信" >
-                            {getFieldDecorator('wechat', {
-                                rules: [{
-                                    required: true, message: 'Please input your password!',
-                                }, {
-                                    validator: this.validateToNextPassword,
-                                }],
-                            })(
-                                <Input type="password" />
-                            )}
-                        </FormItem> */}
-                        
+
+                        {/* 请输入微信 */}
+                        <FormItem {...formItemLayout} label="微信" >
+                            <Input type="password"  placeholder="Enter your wechat" />
+                            
+                            {
+                                !allowWechat ? <p className="error-tip">请输入您的微信，方便发送奖励</p> : null
+                            }
+                            
+                        </FormItem>
+
+                        {/* 请输入密码 */}
+                        <FormItem {...formItemLayout} label="密码" >
+                            <Input type="password"  placeholder="Enter your password" />
+                            {
+                                !allowPassword ? <p className="error-tip">请输入密码</p> : null
+                            }
+                        </FormItem>
+
+                        {/* 确认输入密码 */}
+                        <FormItem {...formItemLayout} label="确认密码">
+                            <Input type="password"  placeholder="Confirm your password"/>
+                            {
+                                !allowRepassword ? <p className="error-tip">请再次输入密码</p> : null
+                            }
+                        </FormItem>
+
                         <FormItem className="submit-wrapper">
-                            <Button text="登录" loading={false} handleClick={e=>console.log(this.props.form.getFieldsValue())} />
+                            <p className="user-tip">已有账号? <a href="/login">去登录</a></p>
+                            <Button text="注册" loading={false} handleClick={e=>console.log(this.props.form.getFieldsValue())} />
                         </FormItem>
                     </Form>
 

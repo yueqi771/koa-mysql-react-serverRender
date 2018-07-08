@@ -18,7 +18,7 @@ module.exports = async (ctx, bundle, template) => {
 
     try {
         const stores = bundle.createStoreMap();
-        const routerContext = {  };
+        const routerContext = {};
         const createApp = bundle.default;
         const app = createApp(stores, routerContext, ctx.url);
 
@@ -28,6 +28,11 @@ module.exports = async (ctx, bundle, template) => {
         const helmet = Helmet.rewind();
         const state = getStoreState(stores);
         const content = await ReactDomServer.renderToString(app);
+
+        console.log('path---------->' + ctx.path)
+
+        console.log('routerContext--------')
+        console.log(routerContext)
 
         // 服务器端处理redirect，路由跳转
         if (routerContext.url) {
