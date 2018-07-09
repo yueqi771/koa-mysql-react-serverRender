@@ -215,7 +215,10 @@ class Register extends Component {
                         </FormItem>
 
                         <FormItem className="submit-wrapper">
-                            <p className="user-tip">已有账号? <a href="/login">去登录</a></p>
+                            <p className="user-tip">
+                                已有账号? 
+                                <span onClick={ e => { alert(1); return((<Redirect to="/login" /> ))}} >去登录</span>
+                            </p>
                             <Button text="注册" loading={false} handleClick={e=>console.log(this.props.form.getFieldsValue())} />
                         </FormItem>
                     </Form>

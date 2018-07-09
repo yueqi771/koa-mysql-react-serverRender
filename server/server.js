@@ -12,7 +12,7 @@ const app = new Koa();
 
 // 判断当前环境
 const isDev = process.env.NODE_ENV === 'development';
-console.log(isDev)
+
 renderRouter = isDev ? require('./router/ssr-dev') : require('./router/ssr')
 
 

@@ -22,23 +22,21 @@ module.exports = async (ctx, bundle, template) => {
         const createApp = bundle.default;
         const app = createApp(stores, routerContext, ctx.url);
 
-        asyncBootstrap(app);
+        await asyncBootstrap(app);
 
         // 定义当前页面需要显示的title, description内容
         const helmet = Helmet.rewind();
         const state = getStoreState(stores);
         const content = await ReactDomServer.renderToString(app);
 
-        console.log('path---------->' + ctx.path)
-
         console.log('routerContext--------')
         console.log(routerContext)
+        
 
         // 服务器端处理redirect，路由跳转
         if (routerContext.url) {
-            ctx.status = 302; 
+            ctx.status = 301; 
             ctx.redirect(routerContext.url);
-            return;
         }
 
         const html = ejs.render(template, {
