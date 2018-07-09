@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, AutoComplete } from 'antd';
 
 import { Button } from '@components/Button/button';
+// import Link from '@components/Link/link'
 import regexp from '@utils/regexp';
 import './register.less';
 
@@ -45,7 +46,10 @@ class Register extends Component {
 
             // 确认密码
             repassword: "",
-            allowRepassword: true
+            allowRepassword: true,
+
+            // 重新向路由
+            redirectTo: ""
         }
 
     }
@@ -56,14 +60,10 @@ class Register extends Component {
 
     // 验证手机号
     vertifyMobile = (e) => {
-        const mobileText = e.target ? e.target.value : "";
+        const mobileText = e.target ? e.target.value : this.state.mobile;
 
-        this.setState({
-            allowMobile: true,
-            mobile: mobileText
-        })
-
-        if(!regexp.test(this.state.mobile)){
+        console.log(mobileText)
+        if(!regexp.mobile.test(mobileText)){
             this.setState({
                 allowMobile: false,
                 mobile: mobileText
@@ -71,20 +71,20 @@ class Register extends Component {
 
             return false
         }
+
+        this.setState({
+            allowMobile: true,
+            mobile: mobileText
+        })
         
         return true;
     }
 
     // 验证非空函数
-    vertifyEmpty = (e, tipKey, key) => {
-        const text = e.target ? e.target.value : "";
-
-        this.setState({
-            [tipKey]: true,
-            [key]: text
-        })
-
-        if(this.state[key] == ""){
+    vertifyEmpty = (e, key, tipKey, ) => {
+        const text = e.target ? e.target.value : this.state[key];
+        
+        if(text == ""){
             this.setState({
                 [tipKey]: false
             })
@@ -92,15 +92,70 @@ class Register extends Component {
             return false;
         }
 
+        this.setState({
+            [tipKey]: true,
+            [key]: text
+        })
+
         return true;
     }
 
+    // 验证密码是否输入正确
+    vertifyPassword = (e) => {
+        const passwordText = e.target ? e.target.value : this.state.password;
+        console.log(passwordText.trim().legnth)
+        if(passwordText.trim().length < 6){
+            this.setState({
+                password: passwordText,
+                allowPassword: false
+            });
+            return false;
+        }
 
+        this.setState({
+            password: passwordText,
+            allowPassword: true
+        });
+
+        return true;
+    }
+
+    // 验证密码是否输入一致
+    vertifyRepassword = (e) => {
+        const rePasswordText = e.target ? e.target.value : this.state.repassword;
+
+        if(rePasswordText != this.state.password){
+            this.setState({
+                repassword: rePasswordText,
+                allowRepassword: false
+            });
+
+            return false;
+        }
+
+        this.setState({
+            repassword: rePasswordText,
+            allowRepassword: true
+        });
+
+        return true;
+    }
+
+    // 确定注册
+    confirmRegister = (e) => {
+        const { mobile, code, nickName, wechat, password, repassword } = this.state;
+        if(this.vertifyMobile(mobile) && this.vertifyEmpty('code') && this.vertifyEmpty(null, 'nickName', '') 
+           && this.vertifyEmpty(null, 'wechat', '') && this.vertifyPassword(password) 
+           && this.vertifyRepassword(repassword) ) {
+
+            alert('注册成功')
+        }
+    }
 
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { mobile, allowMobile, code, allowCode, nickName, allowName, wechat, allowWechat, password, allowPassword, repassword, allowRepassword } = this.state;
+        const { allowMobile, allowCode, allowName, wechat, allowWechat, password, allowPassword, repassword, allowRepassword, redirectTo } = this.state;
 
         const formItemLayout = {
             labelCol: {
@@ -165,7 +220,7 @@ class Register extends Component {
                             </Row>
                             
                             {
-                                !allowCode ? <p className="error-tip" style={{'bottom': "-42px"}}>请输入正确的手机号</p> : null
+                                !allowCode ? <p className="error-tip" style={{'bottom': "-42px"}}>请输入验证码</p> : null
                             }
                             
                         </FormItem>
@@ -182,15 +237,15 @@ class Register extends Component {
                                 </span>
                             )}
                         >
-                            <Input placeholder="Enter your nickName" />
+                            <Input placeholder="Enter your nickName" onChange={e => {this.vertifyEmpty(e, 'allowName', 'nickName')}} />
                             {
-                                !allowName ? <p className="error-tip">请输入您的姓名</p> : null
+                                !allowName ? <p className="error-tip">请输入您的昵称</p> : null
                             }
                         </FormItem>
 
                         {/* 请输入微信 */}
                         <FormItem {...formItemLayout} label="微信" >
-                            <Input type="password"  placeholder="Enter your wechat" />
+                            <Input type="password"  placeholder="Enter your wechat" onChange={e => {this.vertifyEmpty(e, 'allowWechat', 'wechat')}}  />
                             
                             {
                                 !allowWechat ? <p className="error-tip">请输入您的微信，方便发送奖励</p> : null
@@ -200,26 +255,26 @@ class Register extends Component {
 
                         {/* 请输入密码 */}
                         <FormItem {...formItemLayout} label="密码" >
-                            <Input type="password"  placeholder="Enter your password" />
+                            <Input type="password"  placeholder="Enter your password"  onChange={e => this.vertifyPassword(e)} />
                             {
-                                !allowPassword ? <p className="error-tip">请输入密码</p> : null
+                                !allowPassword ? <p className="error-tip">请输入至少6位数的密码</p> : null
                             }
                         </FormItem>
 
                         {/* 确认输入密码 */}
                         <FormItem {...formItemLayout} label="确认密码">
-                            <Input type="password"  placeholder="Confirm your password"/>
+                            <Input type="password"  placeholder="Confirm your password"  onChange={e => this.vertifyRepassword(e)} />
                             {
-                                !allowRepassword ? <p className="error-tip">请再次输入密码</p> : null
+                                !allowRepassword ? <p className="error-tip">两次密码不一致</p> : null
                             }
                         </FormItem>
 
                         <FormItem className="submit-wrapper">
                             <p className="user-tip">
                                 已有账号? 
-                                <span onClick={ e => { alert(1); return((<Redirect to="/login" /> ))}} >去登录</span>
+                                <a href="/login">去登录</a>
                             </p>
-                            <Button text="注册" loading={false} handleClick={e=>console.log(this.props.form.getFieldsValue())} />
+                            <Button text="注册" loading={false} handleClick={this.confirmRegister} />
                         </FormItem>
                     </Form>
 
