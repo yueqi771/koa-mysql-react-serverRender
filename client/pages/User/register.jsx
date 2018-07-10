@@ -20,8 +20,8 @@ class Register extends Component {
         return true
     }
 
-    constructor() {
-        super(...arguments);
+    constructor(props, context) {
+        super(props, context);
 
         this.state = {
             // 手机号
@@ -52,17 +52,17 @@ class Register extends Component {
             redirectTo: ""
         }
 
+        console.log(this.context)
+
     }
 
     componentDidMount() {
-        console.log(this.state['allowCode'])
     }
 
     // 验证手机号
     vertifyMobile = (e) => {
         const mobileText = e.target ? e.target.value : this.state.mobile;
 
-        console.log(mobileText)
         if(!regexp.mobile.test(mobileText)){
             this.setState({
                 allowMobile: false,
@@ -81,13 +81,13 @@ class Register extends Component {
     }
 
     // 验证非空函数
-    vertifyEmpty = (e, key, tipKey, ) => {
-        const text = e.target ? e.target.value : this.state[key];
+    vertifyEmpty = (e, key, tipKey ) => {
+        const text = e ? e.target.value : this.state[key];
         
         if(text == ""){
             this.setState({
                 [tipKey]: false
-            })
+            }, () => {})
 
             return false;
         }
@@ -144,10 +144,11 @@ class Register extends Component {
     // 确定注册
     confirmRegister = (e) => {
         const { mobile, code, nickName, wechat, password, repassword } = this.state;
-        if(this.vertifyMobile(mobile) && this.vertifyEmpty('code') && this.vertifyEmpty(null, 'nickName', '') 
-           && this.vertifyEmpty(null, 'wechat', '') && this.vertifyPassword(password) 
+        if(this.vertifyMobile(mobile) && this.vertifyEmpty(null, 'code', 'allowCode') && this.vertifyEmpty(null, 'nickName', 'allowName') 
+           && this.vertifyEmpty(null, 'wechat', 'allowWechat') && this.vertifyPassword(password) 
            && this.vertifyRepassword(repassword) ) {
 
+            // 发送接口
             alert('注册成功')
         }
     }
@@ -155,7 +156,7 @@ class Register extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { allowMobile, allowCode, allowName, wechat, allowWechat, password, allowPassword, repassword, allowRepassword, redirectTo } = this.state;
+        const { allowMobile, allowCode, allowName,allowWechat,allowPassword, allowRepassword } = this.state;
 
         const formItemLayout = {
             labelCol: {
@@ -195,7 +196,7 @@ class Register extends Component {
                     <Form onSubmit={this.handleSubmit}>
                         {/* 手机号 */}
                         <FormItem {...formItemLayout} label="手机" >
-                            <Input addonBefore={prefixSelector} style={{ width: '100%' }}  placeholder="Enter your mobile" onChange={e => this.vertifyMobile(e)}/>
+                            <Input  addonBefore={prefixSelector} style={{ width: '100%' }}  placeholder="Enter your mobile" onChange={e => this.vertifyMobile(e)}/>
 
                             {
                                 !allowMobile ? <p className="error-tip">请输入正确的手机号</p> : null
