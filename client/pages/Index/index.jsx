@@ -9,6 +9,12 @@ import "./index.less"
     }
 }) @observer
 class Index extends Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        if (_.isEqual(this.props, nextProps) && _.isEqual(this.state, nextState)) {
+            return false
+        }
+        return true
+    }
     render() {
         return(
             // {this.props.userInfo.name}
