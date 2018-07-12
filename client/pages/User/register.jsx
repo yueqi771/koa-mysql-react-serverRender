@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { Redirect } from 'react-router-dom';
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, AutoComplete } from 'antd';
+import { Form, Input, Tooltip, Icon, Select, Row, Col, Checkbox, message } from 'antd';
 
 import { Button } from '@components/Button/button';
 // import Link from '@components/Link/link'
 import regexp from '@utils/regexp';
+import http from '@utils/http';
 import './register.less';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
 
 class Register extends Component {
     shouldComponentUpdate(nextProps, nextState) {
@@ -57,6 +57,7 @@ class Register extends Component {
     }
 
     componentDidMount() {
+      
     }
 
     // 验证手机号
@@ -144,12 +145,29 @@ class Register extends Component {
     // 确定注册
     confirmRegister = (e) => {
         const { mobile, code, nickName, wechat, password, repassword } = this.state;
+
         if(this.vertifyMobile(mobile) && this.vertifyEmpty(null, 'code', 'allowCode') && this.vertifyEmpty(null, 'nickName', 'allowName') 
            && this.vertifyEmpty(null, 'wechat', 'allowWechat') && this.vertifyPassword(password) 
            && this.vertifyRepassword(repassword) ) {
 
             // 发送接口
-            alert('注册成功')
+            http.post({
+                url: "/register",
+                data: {
+                    mobile: mobile,
+                    nickName: nickName,
+                    wechat: wechat,
+                    password: password,
+                }
+            }).then(res => {
+                console.log(res.code )
+
+                if(res.code == 1){
+                    // 注册成功， 提示信息， 跳转主页
+                    message.success('注册成功');
+                    this.props.history.push('/index')
+                }
+            })
         }
     }
 
@@ -213,7 +231,7 @@ class Register extends Component {
                         >
                             <Row gutter={4}>
                                 <Col span={12}>
-                                    <Input  placeholder="Enter your code" onChange={e => {this.vertifyEmpty(e, 'allowCode', 'code')}} />
+                                    <Input  placeholder="Enter your code" onChange={e => {this.vertifyEmpty(e, 'code', 'allowCode')}} />
                                 </Col>
                                 <Col span={10}>
                                     <Button className="get-code" text="获取验证码" loading={false} />
@@ -238,7 +256,7 @@ class Register extends Component {
                                 </span>
                             )}
                         >
-                            <Input placeholder="Enter your nickName" onChange={e => {this.vertifyEmpty(e, 'allowName', 'nickName')}} />
+                            <Input placeholder="Enter your nickName" onChange={e => {this.vertifyEmpty(e, 'nickName', 'allowName')}} />
                             {
                                 !allowName ? <p className="error-tip">请输入您的昵称</p> : null
                             }
@@ -246,7 +264,7 @@ class Register extends Component {
 
                         {/* 请输入微信 */}
                         <FormItem {...formItemLayout} label="微信" >
-                            <Input type="password"  placeholder="Enter your wechat" onChange={e => {this.vertifyEmpty(e, 'allowWechat', 'wechat')}}  />
+                            <Input type="text"  placeholder="Enter your wechat" onChange={e => {this.vertifyEmpty(e, 'wechat', 'allowWechat')}}  />
                             
                             {
                                 !allowWechat ? <p className="error-tip">请输入您的微信，方便发送奖励</p> : null

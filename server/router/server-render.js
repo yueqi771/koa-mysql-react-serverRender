@@ -29,10 +29,6 @@ module.exports = async (ctx, bundle, template) => {
         const state = getStoreState(stores);
         const content = await ReactDomServer.renderToString(app);
 
-        console.log('routerContext--------')
-        console.log(routerContext)
-        
-
         // 服务器端处理redirect，路由跳转
         if (routerContext.url) {
             ctx.status = 301; 

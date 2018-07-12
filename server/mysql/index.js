@@ -53,12 +53,12 @@ createTable(user)
 
 // 注册用户
 exports.insertUser = (value) => {
-    let _sql = "insert into user set name=?, mobile=?, password=?, timezone=?, sex=?, description=?; "
+    let _sql = "insert into user set name=?, mobile=?, password=?, timezone=?, wechat=?, description=?; "
     return query(_sql, value)
 }
 
 // 查找用户
-exports.findUser = (id) => {
-    let _sql = `select * from user where name=${id};`
+exports.findUser = (mobile) => {
+    let _sql = `select * from user where mobile=${mobile};`
     return query(_sql)
 }
