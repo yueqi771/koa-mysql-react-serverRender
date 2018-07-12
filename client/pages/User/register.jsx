@@ -6,6 +6,8 @@ import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, AutoC
 import { Button } from '@components/Button/button';
 // import Link from '@components/Link/link'
 import regexp from '@utils/regexp';
+import http from '@utils/http';
+
 import './register.less';
 
 const FormItem = Form.Item;
@@ -57,6 +59,14 @@ class Register extends Component {
     }
 
     componentDidMount() {
+        http.post({
+            url: "/api/register",
+            data: {
+                mobile: '123'
+            } 
+        }).then(res => {
+
+        })
     }
 
     // 验证手机号

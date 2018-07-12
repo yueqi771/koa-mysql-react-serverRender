@@ -12,10 +12,11 @@ const instance = axios.create({
     withCredentials: true, // 是否允许带cookie这些
 })
 
-const ajax = (method, data, params) => {
+const ajax = (url, method, data, params) => {
     return new Promise((resolve, reject) => {
         instance({
-            method: method,
+            url: url,
+            method: 'post',
             data: data,
             params: params
         }).then(res => {
@@ -32,7 +33,7 @@ const http = {
     get(url, data, params) {
         return ajax(url, 'GET', data, params)
     },
-    post(url, data = {}, params) {
+    post({url="", data = {}, params={}}) {
         return ajax(url, 'POST', qs.stringify(data), params)
     }
 }

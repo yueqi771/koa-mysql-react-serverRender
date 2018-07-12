@@ -28,6 +28,7 @@ app.use(proxy({
       }
     ]
 }));
+
 // 发送静态图标文件
 app.use(async (ctx, next) => {
   if (ctx.path == '/favicon.ico') {
