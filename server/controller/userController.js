@@ -7,6 +7,40 @@ function screct(password) {
     return utility.md5(utility.md5(password + salt));
 }
 
+// 用户登陆
+exports.login = async ctx => {
+    console.log(ctx.request.body);
+    let { mobile, password } = ctx.request.body;
+    await userModel.findUser(mobile)
+        .then(res => {
+            console.log(res[0]['password'])
+            // 2106fde8e98dc3a0f96b956f74a8cd09
+            if(res.length > 0 && mobile === res[0]['mobile'] && screct(password) === res[0]['password']){
+                ctx.session = {
+                    user: res[0]['name'],
+                    id: res[0]['id']
+                }
+
+                ctx.body = {
+                    code: 1,
+                    data: {
+                        user: res[0]['name'],
+                        id: res[0]['id'], 
+                    },
+                    message: '登录成功'
+
+                }
+            }else{
+                ctx.body = {
+                    code: 0,
+                    message: "用户名或密码错误"
+                }
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+}
+
 // 注册用户
 exports.register = async ctx => {
     console.log(ctx.request.body);

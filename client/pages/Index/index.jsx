@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import Header from '@components/Header/header'
 import "./index.less"
 
 
@@ -18,7 +19,9 @@ class Index extends Component {
     render() {
         return(
             // {this.props.userInfo.name}
-            <div className="index"> 这里是INDEX页面</div>
+            <div className="index"> 
+                <Header />
+            </div>
         ) 
     }
 }

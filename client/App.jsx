@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import loadsh from 'lodash'
-import { Route, Redirect } from 'react-router-dom';
+import { Redirect, Route, withRouter } from 'react-router-dom';
 
 
 import RouterMap from './routers/index';
@@ -48,4 +48,4 @@ class App extends Component {
     }
 }
 
-export default App
+export default withRouter(App)

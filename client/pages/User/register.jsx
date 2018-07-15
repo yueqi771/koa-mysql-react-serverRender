@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types'
 import { Form, Input, Tooltip, Icon, Select, Row, Col, Checkbox, message } from 'antd';
 
 import { Button } from '@components/Button/button';
@@ -51,8 +51,6 @@ class Register extends Component {
             // 重新向路由
             redirectTo: ""
         }
-
-        console.log(this.context)
 
     }
 
@@ -160,12 +158,12 @@ class Register extends Component {
                     password: password,
                 }
             }).then(res => {
-                console.log(res.code )
-
                 if(res.code == 1){
                     // 注册成功， 提示信息， 跳转主页
                     message.success('注册成功');
-                    this.props.history.push('/index')
+                    this.context.router.history.push('/index')
+                }else{
+                    message.error(res.message);
                 }
             })
         }
@@ -291,7 +289,7 @@ class Register extends Component {
                         <FormItem className="submit-wrapper">
                             <p className="user-tip">
                                 已有账号? 
-                                <a href="/login">去登录</a>
+                                <span className="link" onClick={e => {console.log(this.context.router.history);this.context.router.history.push('/login')}}>去登录</span>
                             </p>
                             <Button text="注册" loading={false} handleClick={this.confirmRegister} />
                         </FormItem>
@@ -306,5 +304,11 @@ class Register extends Component {
         )
     }
 }
+
+Register.contextTypes = {
+    router: PropTypes.object.isRequired
+}
+
 const RegisterForm = Form.create()(Register);
+
 export default RegisterForm;

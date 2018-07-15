@@ -22,28 +22,33 @@ module.exports = async (ctx, bundle, template) => {
         const createApp = bundle.default;
         const app = createApp(stores, routerContext, ctx.url);
 
-        await asyncBootstrap(app);
+        await asyncBootstrap(app)
+            .then(async () => {
+                // 定义当前页面需要显示的title, description内容
+                const helmet = Helmet.rewind();
+                const state = getStoreState(stores);
+                const content = await ReactDomServer.renderToString(app);
 
-        // 定义当前页面需要显示的title, description内容
-        const helmet = Helmet.rewind();
-        const state = getStoreState(stores);
-        const content = await ReactDomServer.renderToString(app);
+                console.log(routerContext)
 
-        // 服务器端处理redirect，路由跳转
-        if (routerContext.url) {
-            ctx.status = 301; 
-            ctx.redirect(routerContext.url);
-        }
+                // 服务器端处理redirect，路由跳转
+                if (routerContext.url) {
+                    ctx.status = 301; 
+                    ctx.redirect(routerContext.url);
+                }
 
-        const html = ejs.render(template, {
-            appString: content,
-            initialState: serialize(state),
-            title: helmet.title.toString(),
-            style: helmet.style.toString(),
-            link: helmet.link.toString(), 
-        })
+                const html = ejs.render(template, {
+                    appString: content,
+                    initialState: serialize(state),
+                    title: helmet.title.toString(),
+                    style: helmet.style.toString(),
+                    link: helmet.link.toString(), 
+                })
 
-        ctx.body = html;
+                ctx.body = html;
+            } )
+
+       
 
     } catch(err) {
         console.log(err)
