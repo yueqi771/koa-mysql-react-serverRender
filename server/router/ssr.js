@@ -8,7 +8,7 @@ const template = fs.readFileSync(path.join(__dirname, "../../dist/server.ejs"), 
 const router = require('koa-router')();
 
 const handleSSR = async (ctx) => {
-
+	console.log(serverEntry)
 	serverRender(ctx, serverEntry, template)
 }
 

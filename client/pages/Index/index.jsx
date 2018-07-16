@@ -14,28 +14,29 @@ class Index extends Component {
         super(props, context);
 
         this.state = {
-            bannerText: ""
+            // banner标题
+            bannerText1: "",
+            bannerText2: ""
         }
     }
 
-    // async componentDidMount() {
-    //     await this.textAnimate('听见薄雾微光')
-    //         .then(res => {
-    //             console.log(23)
-    //         })
-    // }
+    async componentDidMount() {
+        await this.textAnimate('bannerText1' , '听见薄雾微光');
+        await setTimeout( () => {
+            this.textAnimate('bannerText2', '---王东旭的个人博客')
+        }, 1000)
+    }
 
     // 文字逐渐出现效果
-    textAnimate = (text) => {
-        const { bannerText } = this.state;
+    textAnimate = (key, text) => {
         let i = 0, 
             showText = text;
         let timer = setInterval(() => {
             this.setState({
-                bannerText: text.substring(0, i)
+                [key]: text.substring(0, i)
             }, () => {
                 i++;
-                if(bannerText == showText){
+                if(this.state[key] == showText){
                     clearInterval(timer);
                 };
             })
@@ -52,15 +53,15 @@ class Index extends Component {
 
 
     render() {
-        const { bannerText } = this.state;
+        const { bannerText1, bannerText2 } = this.state;
         return(
             <div className="index"> 
                 <Header />
 
                 {/* 主页banner */}
                 <div className="banner">
-                    <p className="banner-text">听见薄雾微光</p>
-                    <p className="banner-text2">---王东旭的个人博客</p>
+                    <p className="banner-text">{ bannerText1 }</p>
+                    <p className="banner-text2">{ bannerText2 }</p>
 
                 </div> 
                 <div className="star-wrapper">
