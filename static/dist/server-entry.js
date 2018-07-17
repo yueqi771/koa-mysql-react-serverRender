@@ -78,7 +78,7 @@ module.exports =
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "http://127.0.0.1:7000/static/";
+/******/ 	__webpack_require__.p = "/static/dist";
 /******/
 /******/
 /******/ 	// Load entry module and return exports

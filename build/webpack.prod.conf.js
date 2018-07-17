@@ -11,9 +11,9 @@ module.exports = merge(baseConf, {
         app: ["babel-polyfill", "./client/main.js"],
     },
     output: {
-        path: path.resolve(__dirname, "../dist"),
+        path: path.resolve(__dirname, "../static/dist"),
         filename: "js/[name].[chunkhash:8].js",
-        // publicPath: "/static/"
+        publicPath: "/static/dist"
     },
     optimization: {
         splitChunks: {

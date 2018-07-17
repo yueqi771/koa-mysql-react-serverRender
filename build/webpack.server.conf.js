@@ -23,8 +23,8 @@ module.exports = merge(baseWebpackConfig, {
     output: {
         // 打包出来的名字
         filename: "server-entry.js",
-        path: path.join(__dirname, '../dist'),
-        publicPath: 'http://127.0.0.1:7000/static/',
+        path: path.join(__dirname, '../static/dist'),
+        publicPath: '/static/dist',
         // 打包出来的js的模块化方案
         libraryTarget: "commonjs2"
     },

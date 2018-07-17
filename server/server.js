@@ -6,6 +6,8 @@ const proxy = require('koa-proxy2');
 const koaStatic = require('koa-static');
 const bodyParser = require('koa-bodyparser');
 
+const staticRouter = require('./router/static')
+
 // 判断当前环境
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -80,6 +82,7 @@ app.use(async (ctx, next) => {
 // 配置路由
 renderRouter = isDev ? require('./router/ssr-dev') : require('./router/ssr')
 app.use(require('./router/user.js').routes());
+app.use(staticRouter.routes()).use(staticRouter.allowedMethods());
 app.use(renderRouter.routes()).use(renderRouter.allowedMethods());
 
 // 监听一个服务器

@@ -8,6 +8,7 @@
         "build"
     ],
     "env":{
+        "NODE_ENV": "development"
     },
     "verbose": true,
     "ext": "js"
