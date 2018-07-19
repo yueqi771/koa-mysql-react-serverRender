@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.min.css'
+
 import Header from '@components/Header/header'
+import Star from '@components/Star/star'
 import "./index.less"
 
 
@@ -21,6 +25,18 @@ class Index extends Component {
     }
 
     async componentDidMount() {
+        // 实例化swiper
+        let swiper = new Swiper('.swiper-container', {
+            slidesPerView: 4,
+            spaceBetween: 30,
+            freeMode: false,
+     
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+        });
+
         await this.textAnimate('bannerText1' , '听见薄雾微光');
         await setTimeout( () => {
             this.textAnimate('bannerText2', '---王东旭的个人博客')
@@ -58,38 +74,48 @@ class Index extends Component {
             <div className="index"> 
                 <Header />
 
-                {/* 主页banner */}
-                <div className="banner">
-                    <p className="banner-text">{ bannerText1 }</p>
-                    <p className="banner-text2">{ bannerText2 }</p>
+                {/* 流星背景 */}
+                <Star />
 
-                </div> 
-                <div className="star-wrapper">
-                    <span className="star star01"></span>
-                    <span className="star star02"></span>
-                    <span className="star star03"></span>
-                    <span className="star star04"></span>
-                    <span className="star star05"></span>
-                    <span className="star star06"></span>
-                    <span className="star star07"></span>
-                    <span className="star star08"></span>
-                    <span className="star star09"></span>
-                    <span className="star star10"></span>
-                    <span className="star star11"></span>
-                    <span className="star star12"></span>
-                    <span className="star star13"></span>
-                    <span className="star star14"></span>
-                    <span className="star star15"></span>
-                    <span className="star star16"></span>
-                    <span className="star star17"></span>
-                    <span className="star star18"></span>
-                    <span className="star star19"></span>
-                    <span className="star star20"></span>
-                    <span className="star star21"></span>
-                    <span className="star star22"></span>
-                    <span className="star star23"></span>
-                    <span className="star star24"></span>
+                {/* 主页居中容器 */}
+                <div className="index-container">
+                    {/* 主页banner */}
+                    <div className="banner">
+                        {/* banner搜索按钮 */}
+                        <div className="search">
+                            <input type="search" className="search-input" />
+                        </div> 
+
+                        <p className="banner-text">{ bannerText1 }</p>
+                        <p className="banner-text2">{ bannerText2 }</p>
+
+                    </div> 
+
+                    {/* 文章模块 */}
+                    <div className="article-classify">
+                        <p className="article-title">· 止 境</p>
+
+                        <div className="swiper-container">
+                            <div className="swiper-wrapper">
+                                <div className="swiper-slide">Slide 1</div>
+                                <div className="swiper-slide">Slide 2</div>
+                                <div className="swiper-slide">Slide 3</div>
+                                <div className="swiper-slide">Slide 4</div>
+                                <div className="swiper-slide">Slide 5</div>
+                                <div className="swiper-slide">Slide 6</div>
+                                <div className="swiper-slide">Slide 7</div>
+                                <div className="swiper-slide">Slide 8</div>
+                                <div className="swiper-slide">Slide 9</div>
+                                <div className="swiper-slide">Slide 10</div>
+                            </div>
+                            <div className="swiper-pagination"></div>
+                        </div>
+                    </div>
+
                 </div>
+
+
+                
             </div>
         ) 
     }

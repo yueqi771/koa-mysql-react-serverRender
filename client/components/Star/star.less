@@ -1,0 +1,353 @@
+
+    .star-wrapper{
+        width: 100%;
+        min-height: 680px;
+        background: #fff;
+        overflow: hidden;
+        margin: 0 auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
+    
+        .star {
+            display: block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #FFF;
+            top: 100px;
+            left: 400px;
+            position: relative;
+            transform-origin: 100% 0;
+            animation-direction: normal;
+            opacity: 0
+        }
+    
+        
+    
+        .star::after {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 4px;
+            border: 2px solid #F00;
+            border-color: transparent transparent transparent #FFF;
+            transform: rotate(-45deg) translate3d(1px, -1px, 0);
+            transform-origin: 0% 100%;
+            animation: shootingAnimation 1s infinite ease-out;
+            animation-direction: normal
+        }
+    
+        .star01 {
+            top: 5vh;
+            left: 18.16vw;
+            background: #b2d3ea;
+            animation: starAnimation 0.8s infinite ease-out 0.8s
+        }
+    
+        .star01::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.0s infinite ease-out 0.8s
+        }
+    
+        .star02 {
+            top: 23.11vh;
+            left: 14.93vw;
+            background: #e5f0f8;
+            animation: starAnimation 0.9s infinite ease-out 1.2s
+        }
+    
+        .star02::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #e5f0f8;
+            animation: shootingAnimation 1.1s infinite ease-out 1.2s
+        }
+    
+        .star03 {
+            top: 58.0vh;
+            left: 12.37vw;
+            background: #b2d3ea;
+            animation: starAnimation 0.7s infinite ease-out 0.1s
+        }
+    
+        .star03::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 0.9s infinite ease-out 0.1s
+        }
+    
+        .star04 {
+            top: 76.0vh;
+            left: 9.15vw;
+            background: #b2d3ea;
+            animation: starAnimation 0.8s infinite ease-out 0.6s
+        }
+    
+        .star04::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.0s infinite ease-out 0.6s
+        }
+    
+        .star05 {
+            top: 19.94vh;
+            left: 27.16vw;
+            background: #e5f0f8;
+            animation: starAnimation 1.2s infinite ease-out 1.8s
+        }
+    
+        .star05::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #e5f0f8;
+            animation: shootingAnimation 1.4s infinite ease-out 1.8s
+        }
+    
+        .star06 {
+            top: 17.6vh;
+            left: 41.0vw;
+            background: #b2d3ea;
+            animation: starAnimationLong 1.5s infinite ease-out 1.4s
+        }
+    
+        .star06::after {
+            border-width: 2px 300px 2px 300px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.7s infinite ease-out 1.4s
+        }
+    
+        .star07 {
+            top: 35.76vh;
+            left: 37.92vw;
+            background: #b2d3ea;
+            animation: starAnimationLong 1.1s infinite ease-out 0.7s
+        }
+    
+        .star07::after {
+            border-width: 2px 300px 2px 300px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.3s infinite ease-out 0.7s
+        }
+    
+        .star08 {
+            top: -82.81vh;
+            left: 29.43vw;
+            background: #b2d3ea;
+            animation: starAnimation 0.8s infinite ease-out 1.3s
+        }
+    
+        .star08::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.0s infinite ease-out 1.3s
+        }
+    
+        .star09 {
+            top: -20.63vh;
+            left: 54.0vw;
+            background: #99c4e3;
+            animation: starAnimationLong 1.8s infinite ease-out 2.0s
+        }
+    
+        .star09::after {
+            border-width: 2px 300px 2px 300px;
+            border-color: transparent transparent transparent #99c4e3;
+            animation: shootingAnimation 2.0s infinite ease-out 2.0s
+        }
+    
+        .star10 {
+            top: 7.98vh;
+            left: 55.71vw;
+            background: #99c4e3;
+            animation: starAnimation 0.7s infinite ease-out 0.5s
+        }
+    
+        .star10::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #99c4e3;
+            animation: shootingAnimation 0.9s infinite ease-out 0.5s
+        }
+    
+        .star11 {
+            top: 44.29vh;
+            left: 46.56vw;
+            background: #e5f0f8;
+            animation: starAnimation 0.8s infinite ease-out 1.6s
+        }
+    
+        .star11::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #e5f0f8;
+            animation: shootingAnimation 1.0s infinite ease-out 1.6s
+        }
+    
+        .star12 {
+            top: 49.66vh;
+            left: 56.81vw;
+            background: #b2d3ea;
+            animation: starAnimation 1.0s infinite ease-out 1.0s
+        }
+    
+        .star12::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.2s infinite ease-out 1.0s
+        }
+    
+        .star13 {
+            top: 67.68vh;
+            left: 53.59vw;
+            background: #b2d3ea;
+            animation: starAnimation 0.7s infinite ease-out 1.5s
+        }
+    
+        .star13::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 0.9s infinite ease-out 1.5s
+        }
+    
+        .star14 {
+            top: 77.03vh;
+            left: 60.32vw;
+            background: #b2d3ea;
+            animation: starAnimation 1.2s infinite ease-out 0.3s
+        }
+    
+        .star14::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.4s infinite ease-out 0.3s
+        }
+    
+        .star15 {
+            top: 96.29vh;
+            left: 54.1vw;
+            background: #e5f0f8;
+            animation: starAnimation 0.8s infinite ease-out 0.9s
+        }
+    
+        .star15::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #e5f0f8;
+            animation: shootingAnimation 1.0s infinite ease-out 0.9s
+        }
+    
+        .star16 {
+            top: -26.55vh;
+            left: 83.31vw;
+            background: #b2d3ea;
+            animation: starAnimationLong 1.3s infinite ease-out 0.2s
+        }
+    
+        .star16::after {
+            border-width: 2px 300px 2px 300px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.5s infinite ease-out 0.2s
+        }
+    
+        .star17 {
+            top: 12.38vh;
+            left: 78.04vw;
+            background: #99c4e3;
+            animation: starAnimation 0.9s infinite ease-out 1.1s
+        }
+    
+        .star17::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #99c4e3;
+            animation: shootingAnimation 1.1s infinite ease-out 1.1s
+        }
+    
+        .star18 {
+            top: 37.55vh;
+            left: 79.72vw;
+            background: #e5f0f8;
+            animation: starAnimation 0.8s infinite ease-out 0.4s
+        }
+    
+        .star18::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #e5f0f8;
+            animation: shootingAnimation 1.0s infinite ease-out 0.4s
+        }
+    
+        .star19 {
+            top: 55.57vh;
+            left: 76.5vw;
+            background: #b2d3ea;
+            animation: starAnimation 1.1s infinite ease-out 1.2s
+        }
+    
+        .star19::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.3s infinite ease-out 1.2s
+        }
+    
+        .star20 {
+            top: 50.48vh;
+            left: 92.09vw;
+            background: #e5f0f8;
+            animation: starAnimationLong 1.1s infinite ease-out 1.7s
+        }
+    
+        .star20::after {
+            border-width: 2px 300px 2px 300px;
+            border-color: transparent transparent transparent #e5f0f8;
+            animation: shootingAnimation 1.3s infinite ease-out 1.7s
+        }
+    
+        .star21 {
+            top: -16.09vh;
+            left: 116.95vw;
+            background: #b2d3ea;
+            animation: starAnimation 0.8s infinite ease-out 1.8s;
+        }
+    
+        .star21::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.0s infinite ease-out 1.8s
+        }
+    
+        .star22 {
+            top: 15.27vh;
+            left: 95.1vw;
+            background: #b2d3ea;
+            animation: starAnimation 0.9s infinite ease-out 0.8s
+        }
+    
+        .star22::after {
+            border-width: 2px 200px 2px 200px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.1s infinite ease-out 0.8s
+        }
+    
+        .star23 {
+            top: 33.43vh;
+            left: 110.76vw;
+            background: #b2d3ea;
+            animation: starAnimationLong 1.6s infinite ease-out 1.2s
+        }
+    
+        .star23::after {
+            border-width: 2px 300px 2px 300px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.8s infinite ease-out 1.2s
+        }
+    
+        .star24 {
+            top: 84.59vh;
+            left: 97.44vw;
+            background: #b2d3ea;
+            animation: starAnimationLong 1.1s infinite ease-out 1.9s
+        }
+    
+        .star24::after {
+            border-width: 2px 300px 2px 300px;
+            border-color: transparent transparent transparent #b2d3ea;
+            animation: shootingAnimation 1.3s infinite ease-out 1.9s
+        }
+    }
