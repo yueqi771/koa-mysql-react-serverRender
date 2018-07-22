@@ -1,4 +1,103 @@
 
+    @-webkit-keyframes shootingAnimation {
+        50% {
+            transform: scale(1) rotate(-45deg) translate(0px, 0px)
+        }
+
+        100% {
+            transform: scale(0.5) rotate(-45deg) translate(0px, -1px)
+        }
+    }
+
+    @keyframes shootingAnimation {
+        50% {
+            transform: scale(1) rotate(-45deg) translate(0px, 0px)
+        }
+
+        100% {
+            transform: scale(0.5) rotate(-45deg) translate(0px, -1px)
+        }
+    }
+
+    @-webkit-keyframes starAnimation {
+        0% {
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            transform: scale(0) rotate(0) translate3d(0, 0, 0)
+        }
+
+        50% {
+            filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+            opacity: 1;
+            transform: scale(1) rotate(0) translate3d(-200px, 200px, 0)
+        }
+
+        100% {
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            transform: scale(1) rotate(0) translate3d(-300px, 300px, 0)
+        }
+    }
+
+    @keyframes starAnimation {
+        0% {
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            transform: scale(0) rotate(0) translate3d(0, 0, 0)
+        }
+
+        50% {
+            filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+            opacity: 1;
+            transform: scale(1) rotate(0) translate3d(-200px, 200px, 0)
+        }
+
+        100% {
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            transform: scale(1) rotate(0) translate3d(-300px, 300px, 0)
+        }
+    }
+
+    @-webkit-keyframes starAnimationLong {
+        0% {
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            transform: scale(0) rotate(0) translate3d(0, 0, 0)
+        }
+
+        50% {
+            filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+            opacity: 1;
+            transform: scale(1) rotate(0) translate3d(-400px, 400px, 0)
+        }
+
+        100% {
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            transform: scale(1) rotate(0) translate3d(-600px, 600px, 0)
+        }
+    }
+
+    @keyframes starAnimationLong {
+        0% {
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            transform: scale(0) rotate(0) translate3d(0, 0, 0)
+        }
+
+        50% {
+            filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+            opacity: 1;
+            transform: scale(1) rotate(0) translate3d(-400px, 400px, 0)
+        }
+
+        100% {
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            transform: scale(1) rotate(0) translate3d(-600px, 600px, 0)
+        }
+    }
     .star-wrapper{
         width: 100%;
         min-height: 680px;

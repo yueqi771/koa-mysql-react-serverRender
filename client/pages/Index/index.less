@@ -1,104 +1,3 @@
-
-@-webkit-keyframes shootingAnimation {
-    50% {
-        transform: scale(1) rotate(-45deg) translate(0px, 0px)
-    }
-
-    100% {
-        transform: scale(0.5) rotate(-45deg) translate(0px, -1px)
-    }
-}
-
-@keyframes shootingAnimation {
-    50% {
-        transform: scale(1) rotate(-45deg) translate(0px, 0px)
-    }
-
-    100% {
-        transform: scale(0.5) rotate(-45deg) translate(0px, -1px)
-    }
-}
-
-@-webkit-keyframes starAnimation {
-    0% {
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-        opacity: 0;
-        transform: scale(0) rotate(0) translate3d(0, 0, 0)
-    }
-
-    50% {
-        filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-        opacity: 1;
-        transform: scale(1) rotate(0) translate3d(-200px, 200px, 0)
-    }
-
-    100% {
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-        opacity: 0;
-        transform: scale(1) rotate(0) translate3d(-300px, 300px, 0)
-    }
-}
-
-@keyframes starAnimation {
-    0% {
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-        opacity: 0;
-        transform: scale(0) rotate(0) translate3d(0, 0, 0)
-    }
-
-    50% {
-        filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-        opacity: 1;
-        transform: scale(1) rotate(0) translate3d(-200px, 200px, 0)
-    }
-
-    100% {
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-        opacity: 0;
-        transform: scale(1) rotate(0) translate3d(-300px, 300px, 0)
-    }
-}
-
-@-webkit-keyframes starAnimationLong {
-    0% {
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-        opacity: 0;
-        transform: scale(0) rotate(0) translate3d(0, 0, 0)
-    }
-
-    50% {
-        filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-        opacity: 1;
-        transform: scale(1) rotate(0) translate3d(-400px, 400px, 0)
-    }
-
-    100% {
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-        opacity: 0;
-        transform: scale(1) rotate(0) translate3d(-600px, 600px, 0)
-    }
-}
-
-@keyframes starAnimationLong {
-    0% {
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-        opacity: 0;
-        transform: scale(0) rotate(0) translate3d(0, 0, 0)
-    }
-
-    50% {
-        filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-        opacity: 1;
-        transform: scale(1) rotate(0) translate3d(-400px, 400px, 0)
-    }
-
-    100% {
-        filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-        opacity: 0;
-        transform: scale(1) rotate(0) translate3d(-600px, 600px, 0)
-    }
-}
-
 .index{
     width: 100%;
 
@@ -113,12 +12,12 @@
     // 主页banner
     .banner{
         position: relative;
-        height: 400px;
+        height: 263px;
         z-index: 2;
         min-width: 1178px;
         margin: 0 auto;
         text-align: center;
-        padding-top: 200px;
+        padding-top: 84px;
 
         // 搜索按钮
         .search{
@@ -143,8 +42,6 @@
     }
 
     // 文章类型模块
-    // <div className="article-classify">
-    // <p className="article-title">止境</p>
     .article-classify{
         position: relative;
         margin-top: 100px;
@@ -160,7 +57,6 @@
             border-bottom: 1px solid rgba(0,0,0,.2);
         }
 
-
         // 轮播模块
         .swiper-container {
             width: 100%;
@@ -170,12 +66,158 @@
         .swiper-slide {
             text-align: center;
             font-size: 18px;
-            background: #c0f;
             height: 260px;
+            background: linear-gradient(-45deg, #f3cf3f 0%,#f33f58 100%);
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s;
+
+            .effect-milo{
+                cursor: pointer;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                img{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 295px;
+                    opacity: 1;
+                    width: 100%;
+                }
+
+
+                .effect-item{
+                    padding: 0 20px 0;
+                    color: #fff;
+                    text-transform: uppercase;
+                    font-size: 15px;
+                    -webkit-backface-visibility: hidden;
+                    backface-visibility: hidden;
+
+                    .item-link{
+                        color: rgba(0, 0, 0, 0.8)
+                    }
+
+                    &:before, &:after{
+                        position: absolute;
+                        content: '';
+                        opacity: 0;
+                    }
+
+                    &:before{
+                        top: 33px;
+                        left: 10px;
+                        bottom: 37px;
+                        border-top: 1px solid #fff;
+                        border-bottom: 1px solid #fff;
+                        -webkit-transform: scale(0, 1);
+                        transform: scale(0, 1);
+                        -webkit-transform-origin: 0 0;
+                        transform-origin: 0 0;
+                        width: 287px;
+                    }
+
+                    &:after{
+                        top: 19px;
+                        right: 20px;
+                        bottom: 34px;
+                        left: 20px;
+                        border-right: 1px solid #fff;
+                        border-left: 1px solid #fff;
+                        -webkit-transform: scale(1, 0);
+                        transform: scale(1, 0);
+                        -webkit-transform-origin: 100% 0;
+                        transform-origin: 100% 0;
+                        height: 221px;
+                    }
+                }
+            }
+
+            .item-title {
+                padding-top: 26%;
+                -webkit-transition: -webkit-transform 0.35s;
+                transition: transform 0.35s;
+            }
+
+            .item-description {
+                padding: 10px 20px;
+                text-transform: none;
+                opacity: 0;
+                -webkit-transform: translate3d(0,-10px,0);
+                transform: translate3d(0,-10px,0);
+            }
+
+            img, .effect-item:before, .effect-item:after, .item-description {
+                -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+                transition: opacity 0.35s, transform 0.35s;
+            }
+
+            &:hover .effect-item:before,
+            &:hover .effect-item:after {
+                opacity: 1;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+            &:hover .item-title,
+            &:hover .item-description {
+                opacity: 1;
+                -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+            }
+
+            &:hover .effect-item:after,
+            &:hover .item-title,
+            &:hover .item-description,
+            &:hover img {
+                -webkit-transition-delay: 0.15s;
+                transition-delay: 0.15s;
+            }
+
+            &:hover img {
+                opacity: 0.7;
+                -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+            }
+
+            img, .item-title {
+                -webkit-transform: translate3d(0,-30px,0);
+                transform: translate3d(0,-30px,0);
+            }
+
+            img, .effect-item:before, .effect-item:after, .item-description {
+                -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+                transition: opacity 0.35s, transform 0.35s;
+            }
+            
+        }
+
+    }
+
+    // 推荐文章模块
+    .recommended{
+        position: relative;
+        margin-top: 100px;
+        width: 100%;
+        height: 300px;
+
+        // 标题
+        .article-title{
+            height: 40px;
+            font-size: 20px;
+            color: #000;
+            padding-left: 20px;
+            border-bottom: 1px solid rgba(0,0,0,.2);
         }
     }
+    // <div className="recommended">
+    //     <p className="article-title">· 止 境</p>
+    
+    // </div>
     
 }

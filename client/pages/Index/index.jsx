@@ -14,13 +14,81 @@ import "./index.less"
     }
 }) @observer
 class Index extends Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        if (_.isEqual(this.props, nextProps) && _.isEqual(this.state, nextState)) {
+            return false
+        }
+
+        return true
+    }
+
     constructor(props, context) {
         super(props, context);
 
         this.state = {
             // banner标题
             bannerText1: "",
-            bannerText2: ""
+            bannerText2: "",
+
+            // 文章模块
+            articleClassify: [
+                {
+                    id: "asdd2454cvgrty",
+                    thumb: "http://localhost:3000/images/classify10.jpg",
+                    title: "MySql",
+                    description: "mysql常用命令， mysql 连表查询",
+                    article_num: 30,
+                },
+                {
+                    id: "as123Asdfcvgrty",
+                    thumb: "http://localhost:3000/images/classify1.jpg",
+                    title: "javaScript设计模式",
+                    description: "mysql常用命令， mysql 连表查询",
+                    article_num: 30,
+                },
+                {
+                    id: "asdfgdfgvgrty",
+                    thumb: "http://localhost:3000/images/classify2.jpg",
+                    title: "React",
+                    description: "mysql常用命令， mysql 连表查询",
+                    article_num: 30,
+                },
+                {
+                    id: "asdd24ghcvrty",
+                    thumb: "http://localhost:3000/images/classify3.jpg",
+                    title: "Vue",
+                    description: "mysql常用命令， mysql 连表查询",
+                    article_num: 30,
+                },
+                {
+                    id: "asdtyrtcvgrty",
+                    thumb: "http://localhost:3000/images/classify4.jpg",
+                    title: "Node",
+                    description: "mysql常用命令， mysql 连表查询",
+                    article_num: 30,
+                },
+                {
+                    id: "avbns4cvgrty",
+                    thumb: "http://localhost:3000/images/classify5.jpg",
+                    title: "http模块",
+                    description: "mysql常用命令， mysql 连表查询",
+                    article_num: 30,
+                },
+                {
+                    id: "gsdcccvgrty",
+                    thumb: "http://localhost:3000/images/classify6.jpg",
+                    title: "js模块",
+                    description: "mysql常用命令， mysql 连表查询",
+                    article_num: 30,
+                },
+                {
+                    id: "gtgttrrcvgrty",
+                    thumb: "http://localhost:3000/images/classify7.jpg",
+                    title: "weex模块",
+                    description: "mysql常用命令， mysql 连表查询",
+                    article_num: 30,
+                },
+            ]
         }
     }
 
@@ -59,17 +127,25 @@ class Index extends Component {
         }, 160);
     }
 
-
-    shouldComponentUpdate(nextProps, nextState) {
-        if (_.isEqual(this.props, nextProps) && _.isEqual(this.state, nextState)) {
-            return false
-        }
-        return true
+    // 渲染文章模块
+    renderClassify = (data) => {
+        console.log(data)
+        return (
+            <div className="swiper-slide" key={data.id}>
+                <div className="effect-milo">
+                    <img src={data.thumb} alt="img03"/>
+                    <div  className="effect-item">
+                        <h2 className="item-title">{ data.title }</h2>
+                        <p className="item-description">{ data.description }</p>
+                        <a className="item-link" href="#">View more</a>
+                    </div>			
+                </div>
+            </div>
+        )
     }
 
-
     render() {
-        const { bannerText1, bannerText2 } = this.state;
+        const { bannerText1, bannerText2, articleClassify } = this.state;
         return(
             <div className="index"> 
                 <Header />
@@ -97,21 +173,23 @@ class Index extends Component {
 
                         <div className="swiper-container">
                             <div className="swiper-wrapper">
-                                <div className="swiper-slide">Slide 1</div>
-                                <div className="swiper-slide">Slide 2</div>
-                                <div className="swiper-slide">Slide 3</div>
-                                <div className="swiper-slide">Slide 4</div>
-                                <div className="swiper-slide">Slide 5</div>
-                                <div className="swiper-slide">Slide 6</div>
-                                <div className="swiper-slide">Slide 7</div>
-                                <div className="swiper-slide">Slide 8</div>
-                                <div className="swiper-slide">Slide 9</div>
-                                <div className="swiper-slide">Slide 10</div>
+                                {
+                                    articleClassify && 
+                                    articleClassify.map((item, index) =>  
+                                        this.renderClassify(item) 
+                                    )
+                                }
+                                
                             </div>
                             <div className="swiper-pagination"></div>
                         </div>
                     </div>
-
+                    
+                    {/* 推荐文章 */}
+                    <div className="recommended">
+                        <p className="article-title">· 推 荐</p>
+                    
+                    </div>
                 </div>
 
 
