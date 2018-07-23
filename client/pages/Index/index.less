@@ -1,5 +1,6 @@
 .index{
     width: 100%;
+    padding-bottom: 200px;
 
     .index-container{
         width: 1366px;
@@ -200,7 +201,7 @@
     }
 
     // 推荐文章模块
-    .recommended{
+    .recommend{
         position: relative;
         margin-top: 100px;
         width: 100%;
@@ -214,10 +215,58 @@
             padding-left: 20px;
             border-bottom: 1px solid rgba(0,0,0,.2);
         }
+
+        .recommend-wrapper{
+            display: flex;
+            flex-direction: row;   
+            
+            .article-list{
+                width: 840px;
+                height: 240px;
+                margin-bottom: 10px;
+                padding: 20px;
+                overflow: hidden;
+                box-shadow: 0 3px 28px -7px rgba(0,0,0,.5);
+                display: flex;
+                flex-direction: row;
+            }
+        }
     }
-    // <div className="recommended">
-    //     <p className="article-title">· 止 境</p>
+    // <div className="recommend-wrapper">
+    //     {/* 左侧推荐文章 */}
+    //     <div className="recommend-article">
+    //         <div className="article-list">
+            
+    //         </div>
+    //     </div>
+
+    //     {/* 右侧个人信息 */}
+    //     <div className="base-info"></div>
+    // </div> 
     
+
+    // {/* 左侧文章封面 */}
+    // <div className="list-left">
+    //     <img src="http://localhost:3000/images/classify11.jpg" alt=""/>
+    //     <p className="article-info">
+    //         <span className="iconfont"></span>
+    //         <span className="text"></span>
+    //     </p>
+
+    //     <p className="article-info">
+    //         <span className="iconfont"></span>
+    //         <span className="text"></span>
+    //     </p>
+
+    //     <p className="article-info">
+    //         <span className="iconfont"></span>
+    //         <span className="text"></span>
+    //     </p>
     // </div>
-    
+
+    // {/* 右侧文章内容 */}
+    // <div className="article-content">
+    //     <p className="article-title">这里是文章标题</p>
+    //     <p className="article-content">这里是文章内容</p> 
+    // </div>
 }

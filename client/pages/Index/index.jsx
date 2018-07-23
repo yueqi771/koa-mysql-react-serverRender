@@ -186,8 +186,44 @@ class Index extends Component {
                     </div>
                     
                     {/* 推荐文章 */}
-                    <div className="recommended">
-                        <p className="article-title">· 推 荐</p>
+                    <div className="recommend">
+                        <p className="recommend-title">· 推 荐</p>
+                        
+                        <div className="recommend-wrapper">
+                            {/* 左侧推荐文章 */}
+                            <div className="recommend-article">
+                                <div className="article-list">
+                                    {/* 左侧文章封面 */}
+                                    <div className="list-left">
+                                        <img src="http://localhost:3000/images/classify11.jpg" alt=""/>
+                                        <p className="article-info">
+                                            <span className="iconfont"></span>
+                                            <span className="text"></span>
+                                        </p>
+
+                                        <p className="article-info">
+                                            <span className="iconfont"></span>
+                                            <span className="text"></span>
+                                        </p>
+
+                                        <p className="article-info">
+                                            <span className="iconfont"></span>
+                                            <span className="text"></span>
+                                        </p>
+                                    </div>
+
+                                    {/* 右侧文章内容 */}
+                                    <div className="article-content">
+                                        <p className="article-title">这里是文章标题</p>
+                                        <p className="article-content">这里是文章内容</p> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* 右侧个人信息 */}
+                            <div className="base-info"></div>
+                        </div> 
+                        
                     
                     </div>
                 </div>
