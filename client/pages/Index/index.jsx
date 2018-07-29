@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Icon } from 'antd';
 import { observer, inject } from 'mobx-react';
 import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
@@ -195,28 +196,35 @@ class Index extends Component {
                                 <div className="article-list">
                                     {/* 左侧文章封面 */}
                                     <div className="list-left">
-                                        <img src="http://localhost:3000/images/classify11.jpg" alt=""/>
-                                        <p className="article-info">
-                                            <span className="iconfont"></span>
-                                            <span className="text"></span>
-                                        </p>
+                                        <img src="http://localhost:3000/images/classify9.jpg" alt=""/>
 
-                                        <p className="article-info">
-                                            <span className="iconfont"></span>
-                                            <span className="text"></span>
-                                        </p>
+                                        <div className="article-list-info">
+                                            <p className="info-item">
+                                                <Icon type="tag" className="icon tag" />
+                                                <span className="text">css | html</span>
+                                            </p>
 
-                                        <p className="article-info">
-                                            <span className="iconfont"></span>
-                                            <span className="text"></span>
-                                        </p>
+                                            <p className="info-item">
+                                                <Icon type="dashboard" className="icon time" />
+                                                <span className="text">2018/2/2</span>
+                                            </p>
+
+                                            <p className="info-item">
+                                                <Icon type="eye-o" className="icon saw" />
+                                                <span className="text">浏览(300)</span>
+                                            </p>
+                                        </div>
                                     </div>
 
                                     {/* 右侧文章内容 */}
-                                    <div className="article-content">
-                                        <p className="article-title">这里是文章标题</p>
-                                        <p className="article-content">这里是文章内容</p> 
+                                    <div className="list-right">
+                                        <h3 className="article-title">这里是文章标题</h3>
+                                        <p className="article-content">这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容这里是文章内容</p> 
+                                        {/* 阅读原文 */}
+                                        <p className="read-orign">阅读原文</p>
                                     </div>
+
+                                    
                                 </div>
                             </div>
 

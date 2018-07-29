@@ -208,7 +208,7 @@
         height: 300px;
 
         // 标题
-        .article-title{
+        .recommend-title{
             height: 40px;
             font-size: 20px;
             color: #000;
@@ -229,6 +229,78 @@
                 box-shadow: 0 3px 28px -7px rgba(0,0,0,.5);
                 display: flex;
                 flex-direction: row;
+
+                .list-left{
+                    position: relative;
+                    img{
+                       width: 240px;
+                       height: 160px;
+                       border-radius: 5px;
+                    }
+
+                    .article-list-info{
+                        display: flex;
+                        margin: 20px 0 0 0;
+                        color: #838383;
+                        position: absolute;
+                        
+                        .info-item{
+                            margin-right: 10px;
+                            display: flex;
+                            align-items: center;
+                            font-size: 14px;
+                            min-width: 86px;
+
+                            .icon{
+                                font-size: 16px;
+                                margin-right: 10px;
+
+                                &.tag{
+                                    color: rgba(248, 168, 168, 1)
+                                }
+
+                                &.time{
+                                    color: rgba(101, 232, 234, 1)
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+                // 右侧文章内容
+                .list-right{
+                    margin-left: 20px;
+                    letter-spacing: 1px;
+                    position: relative;
+                    padding-bottom: 30px;
+
+                    .article-title{
+                        line-height: 30px;
+                        height: 30px;
+                        margin: 10px 0;
+                        font-weight: bold;
+                        font-size: 18px;
+                        color: #666;
+                    }
+
+                    .article-content{
+                        line-height: 26px;
+                        color: #888;
+                    }
+
+                    .read-orign{
+                        position: absolute;
+                        color: #4ba8c9;
+                        right: 3px;
+                        height: 20px;
+                        cursor: pointer;
+                        bottom: -16px;
+                        &:hover{
+                            border-bottom: 1px solid #4ba8c9;
+                        }
+                    }
+                }
             }
         }
     }
@@ -246,22 +318,18 @@
     
 
     // {/* 左侧文章封面 */}
-    // <div className="list-left">
-    //     <img src="http://localhost:3000/images/classify11.jpg" alt=""/>
-    //     <p className="article-info">
-    //         <span className="iconfont"></span>
-    //         <span className="text"></span>
-    //     </p>
+    // <div className="article-list">
+    //     <div className="list-left">
+    //         <img src="http://localhost:3000/images/classify11.jpg" alt=""/>
+    //     </div>
 
-    //     <p className="article-info">
-    //         <span className="iconfont"></span>
-    //         <span className="text"></span>
-    //     </p>
+    //     {/* 右侧文章内容 */}
+    //     <div className="article-content">
+    //         <p className="article-title">这里是文章标题</p>
+    //         <p className="article-content">这里是文章内容</p> 
+    //     </div>
 
-    //     <p className="article-info">
-    //         <span className="iconfont"></span>
-    //         <span className="text"></span>
-    //     </p>
+    //     {/* 阅读原文 */}
     // </div>
 
     // {/* 右侧文章内容 */}
