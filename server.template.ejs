@@ -7,9 +7,13 @@
     <%%- style %>
 
     <%%- link %>
+    <link href="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.min.css" rel="stylesheet">
+
 </head>
 <body>
     <div id="root"><%%- appString  %></div>
+    <script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.min.js"></script>
+
     <script>
         window.__INITIAL_STATE__ = <%%- initialState %>
     </script>

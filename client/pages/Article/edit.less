@@ -4,10 +4,10 @@
 
 	.edit-article-wrapper{
 		width: 1200px;
-		margin: 40px auto;
+		margin: 40px auto 0;
 		min-height: 600px;
-		padding: 40px;
 		border: 1px solid #666;
+		position: relative;
 
 		// 文章标题
 		.title-wrapper{
@@ -87,7 +87,7 @@
 		// 选择文章类型
 		.article-type{
 			float: right;
-			margin-top: -22px;
+			margin: -22px 40px 0 0;
 
 			.article-type-item{
 				width: 180px;
@@ -98,20 +98,34 @@
 				width: 100%;
 			}
 		}
+		
+		// 富文本编辑器
+		.toolbar {
+			border-bottom: 1px solid #ccc;
+			margin-bottom: 20px;
+        }
+		.editor-wrapper{
+			width: 100%;
+			min-height: 600px;
+			margin-top: 58px;
+			border-top: 1px solid #ccc;
+			z-index: 0!important;
+
+			.w-e-text{
+				min-height: 600px;
+				padding: 8px 40px;
+			}
+		}
 	}
 
-	// <div className="article-type">
-	// 	<div className="article-type-item">
-	// 		<DatePicker />
-	// 	</div>
+	.container{
+		width: 1200px;
+		margin: 0 auto;
+	}
+	.submit-article{
+		width: 300px;
+		float: right;
+		
+	}
 
-	// 	<div className="article-type-item">
-	// 		<Select defaultValue="lucy" style={{ width: 120 }} >
-	// 			<Option value="jack">Jack</Option>
-	// 			<Option value="lucy">Lucy</Option>
-	// 			<Option value="disabled" disabled>Disabled</Option>
-	// 			<Option value="Yiminghe">yiminghe</Option>
-	// 		</Select>
-	// 	</div>
-	// </div>
 }

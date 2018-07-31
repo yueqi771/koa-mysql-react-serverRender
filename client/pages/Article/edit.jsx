@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { DatePicker, Select } from 'antd';
 
+import { Button } from '@components/Button/button';
 import Header from '@components/Header/header'
 import './edit.less'
 
@@ -9,6 +10,18 @@ const Option = Select.Option;
 
 
 class EditArticle extends Component {
+	constructor(props, context) {
+		super(props, context)
+	}
+
+	componentDidMount() {
+		let Editor = window.wangEditor
+		let instance = new Editor('#toolbar', '#editor');
+		instance.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
+        // 或者 var editor = new E( document.getElementById('editor') )
+        instance.create()
+	}
+
     render () {
         return(
             <div className="edit-article">
@@ -16,6 +29,8 @@ class EditArticle extends Component {
 
 				{/* 编辑页面主体 */}
 				<div className="edit-article-wrapper">
+					{/* 富文本编辑器标题 */}
+					<div id="toolbar" className="toolbar"></div>
 
 					{/* 输入标题 */}
 					<div className="title-wrapper">
@@ -36,6 +51,20 @@ class EditArticle extends Component {
 								<Option value="Yiminghe">yiminghe</Option>
 							</Select>
 						</div>
+						
+					</div>
+
+					{/* 富文本编辑器 */}
+					<div id="editor" className="editor-wrapper"></div>
+
+					
+				</div>
+
+				{/* 保存按钮 */}
+				{/* 确认提交按钮 */}
+				<div className="container">
+					<div className="submit-article">
+						<Button text="提交" loading={false} handleClick={e => console.log('提交')} />
 					</div>
 				</div>
             </div>
