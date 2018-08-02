@@ -45,11 +45,28 @@ let user =
         PRIMARY KEY (id)
     );`
 
+let article = 
+    `CREATE TABLE IF NOT EXISTS article(
+        id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户id',
+        thumb VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章封面',
+        title VARCHAR(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章标题',
+        description VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '文章描述',
+        type TINYINT(4) UNSIGNED NOT NULL DEFAULT '1',
+        author VARCHAR(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '内容',
+        uid INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '作者id',
+        content TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章内容',
+        clicks INT(10) UNSIGNED NOT NULL COMMENT '浏览量',
+        addtime INT(10) UNSIGNED NOT NULL COMMENT '添加时间',
+        status TINYINT(4) UNSIGNED NOT NULL DEFAULT '1' COMMENT '0-删除 1-正常',
+        PRIMARY KEY (ID)
+    )`
+
 let createTable = (sql) => {
     return query(sql, []);
 }
 
-createTable(user)
+createTable(user);
+createTable(article)
 
 // 注册用户
 exports.insertUser = (value) => {
@@ -61,4 +78,10 @@ exports.insertUser = (value) => {
 exports.findUser = (mobile) => {
     let _sql = `select * from user where mobile=${mobile};`
     return query(_sql)
+}
+
+// 插入文章
+exports.inserArticle = (value) => {
+    let _sql = "insert into article set thumb=?, title=?, description=?, type=?,  content=?, clicks=0, addtime=?";
+    return query(_sql, value)
 }
