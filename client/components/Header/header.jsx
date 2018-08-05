@@ -18,7 +18,7 @@ class Header extends Component {
 
                     <div className="header-list">
                         <p className="header-list-item" onClick={e => {router.history.push('/index')}}>首页</p>
-                        <p className="header-list-item" onClick={e => {router.history.push('/index')}}>技术杂谈</p>
+                        <p className="header-list-item" onClick={e => {router.history.push('/edit')}}>技术杂谈</p>
                         <p className="header-list-item" onClick={e => {router.history.push('/index')}}>关于自己</p>
                         <p className="header-list-item" onClick={e => {router.history.push('/index')}}>时间轴</p>
                         <p className="header-list-item" onClick={e => {router.history.push('/login')}}>登陆</p>

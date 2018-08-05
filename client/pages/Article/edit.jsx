@@ -3,6 +3,7 @@ import { DatePicker, Select } from 'antd';
 
 import { Button } from '@components/Button/button';
 import Header from '@components/Header/header'
+import http from '@utils/http'
 import './edit.less'
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
@@ -15,10 +16,28 @@ class EditArticle extends Component {
 	}
 
 	componentDidMount() {
-		let Editor = window.wangEditor
-		let instance = new Editor('#toolbar', '#editor');
+		
+
+		// 获取文章类型
+		http.post({
+			url: "/article/save",
+			data: {
+				title: "第一篇测试文章", 
+				thumb: "123", 
+				description: "sdf", 
+				type: "23234", 
+				uid: 1, 
+				content: "这里是内容", 
+				addtime: "23234" 
+			}
+		}).then(res => {
+			console.log(res)
+		})
+
+		// 实例化editor; 
+		let Editor = window.wangEditor,
+			instance = new Editor('#toolbar', '#editor');
 		instance.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
-        // 或者 var editor = new E( document.getElementById('editor') )
         instance.create()
 	}
 
@@ -56,7 +75,6 @@ class EditArticle extends Component {
 
 					{/* 富文本编辑器 */}
 					<div id="editor" className="editor-wrapper"></div>
-
 					
 				</div>
 

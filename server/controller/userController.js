@@ -13,8 +13,7 @@ exports.login = async ctx => {
     let { mobile, password } = ctx.request.body;
     await userModel.findUser(mobile)
         .then(res => {
-            console.log(res[0]['password'])
-            // 2106fde8e98dc3a0f96b956f74a8cd09
+            
             if(res.length > 0 && mobile === res[0]['mobile'] && screct(password) === res[0]['password']){
                 ctx.session = {
                     user: res[0]['name'],
