@@ -25,7 +25,7 @@ class EditArticle extends Component {
 				title: "第一篇测试文章", 
 				thumb: "123", 
 				description: "sdf", 
-				type: "23234", 
+				type: 1, 
 				uid: 1, 
 				content: "这里是内容", 
 				addtime: "23234" 

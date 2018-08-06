@@ -82,6 +82,7 @@ app.use(async (ctx, next) => {
 // 配置路由
 renderRouter = isDev ? require('./router/ssr-dev') : require('./router/ssr')
 app.use(require('./router/user.js').routes());
+app.use(require('./router/article.js').routes());
 app.use(staticRouter.routes()).use(staticRouter.allowedMethods());
 app.use(renderRouter.routes()).use(renderRouter.allowedMethods());
 

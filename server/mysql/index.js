@@ -82,6 +82,6 @@ exports.findUser = (mobile) => {
 
 // 插入文章
 exports.inserArticle = (value) => {
-    let _sql = "insert into article set thumb=?, title=?, description=?, type=?,  content=?, clicks=0, addtime=?";
+    let _sql = "insert into article set thumb=?, title=?, description=?, type=?, author=?, content=?, clicks=0, addtime=?";
     return query(_sql, value)
 }

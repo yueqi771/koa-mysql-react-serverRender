@@ -130,7 +130,6 @@ class Index extends Component {
 
     // 渲染文章模块
     renderClassify = (data) => {
-        console.log(data)
         return (
             <div className="swiper-slide" key={data.id}>
                 <div className="effect-milo">
