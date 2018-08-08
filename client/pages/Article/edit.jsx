@@ -18,6 +18,9 @@ class EditArticle extends Component {
 			// 输入的文章标题
 			title: "",
 
+			// 编辑文章的时间
+			editTime: "",
+
 			// 文章类型数组
 			articleType: [
 				{ type: 'javaScript设计模式', id: 1 },
@@ -60,12 +63,24 @@ class EditArticle extends Component {
 		var Editor = window.wangEditor;
 		window.editorInstance = new Editor('#toolbar', '#editor');
 		editorInstance.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
-        editorInstance.create()
+		editorInstance.create()
+
+		// 保存上次编辑的内容
+		const articleContent = store.get('articleData') ? store.get('articleData').content : "";
+		console.log(articleContent)
+		editorInstance.txt.html(articleContent);
+
 	}
 
 	// 点击保存到本地
 	saveAtLocal() {
-		console.log(editorInstance.txt.html())
+		const { title } = this.state;
+		let articleData = {
+			title: title,
+			content: editorInstance.txt.html()
+		};
+
+		store.set('articleData', articleData)
 	}
 
 	// 修改文章类型
@@ -77,7 +92,9 @@ class EditArticle extends Component {
 
 	// 保存选中的时间
 	changeTime(date, dateString) {
-		console.log(dateString);
+		this.setState({
+			editTime: dataString
+		})
 	}
 
     render () {
