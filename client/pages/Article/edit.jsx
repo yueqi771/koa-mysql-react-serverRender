@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { DatePicker, Select, Icon } from 'antd';
+import { DatePicker, Select, Icon, message } from 'antd';
+import moment from 'moment';
 
 import { Button } from '@components/Button/button';
 import Header from '@components/Header/header'
@@ -33,31 +34,17 @@ class EditArticle extends Component {
 			],
 
 			// 选中的文章类型
-			currentType: ''
+			currentType: {
+				label: "javaScript设计模式",
+				key: 1
+			}
 		}
 
 		this.changeType = this.changeType.bind(this);
 		this.changeTime = this.changeTime.bind(this);
 	}
 
-	componentDidMount() {
-
-
-		// // 获取文章类型
-		// http.post({
-		// 	url: "/article/save",
-		// 	data: {
-		// 		title: "第一篇测试文章",
-		// 		thumb: "123",
-		// 		description: "sdf",
-		// 		type: 1,
-		// 		uid: 1,
-		// 		content: "这里是内容",
-		// 		addtime: "23234"
-		// 	}
-		// }).then(res => {
-		// 	console.log(res)
-		// })
+	componentDidMount() {	
 
 		// 实例化editor;
 		var Editor = window.wangEditor;
@@ -66,39 +53,78 @@ class EditArticle extends Component {
 		editorInstance.create()
 
 		// 保存上次编辑的内容
-		const articleContent = store.get('articleData') ? store.get('articleData').content : "";
-		console.log(articleContent)
-		editorInstance.txt.html(articleContent);
+		const articleData = store.get('articleData') ? store.get('articleData') : this.state;
+		editorInstance.txt.html(articleData.content);
+
+		this.setState({
+			title: articleData.title,
+			currentType: articleData.currentType,
+			editTime: articleData.editTime,
+		}, () => {
+			console.log(this.state.editTime);
+		})
 
 	}
 
 	// 点击保存到本地
 	saveAtLocal() {
-		const { title } = this.state;
+		const { title, editTime, currentType } = this.state;
 		let articleData = {
 			title: title,
+			editTime: editTime,
+			currentType: currentType,
 			content: editorInstance.txt.html()
 		};
 
-		store.set('articleData', articleData)
+		store.set('articleData', articleData);
+
+		message.success('已保存在本地')
 	}
 
 	// 修改文章类型
 	changeType(value) {
 		this.setState({
-			currentType: value.key
+			currentType: value
 		})
 	}
 
 	// 保存选中的时间
 	changeTime(date, dateString) {
 		this.setState({
-			editTime: dataString
+			editTime: dateString
+		})
+	}
+
+	// 保存文章
+	saveArticle() {
+		const { title, editTime, currentType } = this.state;
+		if(!time) { message.error('请选择时间'); return }
+		if(title == ''){message.error('请填写文章标题'); return }
+		
+		let content = editorInstance.txt.html();
+		http.post({
+			url: "/api/article/save",
+			data: {
+				title: title,
+				thumb: "123",
+				description: "sdf",
+				type: currentType.key,
+				uid: 1,
+				content: content,
+				addtime: editTime
+			}
+		}).then(res => {
+			if(res.code == 1){
+				message.success('保存成功')
+			}else{
+				message.error(res.message)
+			}
 		})
 	}
 
     render () {
-		const { articleType } = this.state
+		const { articleType, title, editTime, currentType } = this.state;
+		let time = editTime ? editTime : ""
         return(
             <div className="edit-article">
                 <Header />
@@ -110,7 +136,12 @@ class EditArticle extends Component {
 
 					{/* 输入标题 */}
 					<div className="title-wrapper">
-						<input type="text" placeholder="请输入标题" className="title-input"  />
+						<input 
+						  value={title} 
+						  type="text" 
+						  placeholder="请输入标题" 
+						  className="title-input"
+						  onChange={e => { this.setState({title: e.target.value}) }}  />
 					</div>
 
 					{/* 选择日期, 选择类型 */}
@@ -120,7 +151,12 @@ class EditArticle extends Component {
 						</div>
 
 						<div className="article-type-item">
-							<Select placeholder="文章类型" labelInValue onChange={this.changeType} style={{ width: '100%' }} >
+							<Select 
+							  placeholder="文章类型" 
+							  labelInValue 
+							  defaultValue={"javaScript设计模式"}
+							  onChange={this.changeType} 
+							  style={{ width: '100%' }} >
 								{
 									articleType.map((item) => (
 										<Option key={item.id} value={item.id}>{ item.type }</Option>
@@ -145,7 +181,7 @@ class EditArticle extends Component {
 				{/* 确认提交按钮 */}
 				<div className="container">
 					<div className="submit-article">
-						<Button text="提交" loading={false} handleClick={e => console.log('提交')} />
+						<Button text="提交" loading={false} handleClick={e => this.saveArticle()} />
 					</div>
 				</div>
             </div>
