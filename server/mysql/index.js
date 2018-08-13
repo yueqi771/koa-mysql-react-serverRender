@@ -56,7 +56,7 @@ let article =
         uid INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '作者id',
         content TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章内容',
         clicks INT(10) UNSIGNED NOT NULL COMMENT '浏览量',
-        addtime INT(10) UNSIGNED NOT NULL COMMENT '添加时间',
+        addtime VARCHAR(36) UNSIGNED NOT NULL COMMENT '添加时间',
         status TINYINT(4) UNSIGNED NOT NULL DEFAULT '1' COMMENT '0-删除 1-正常',
         PRIMARY KEY (ID)
     )`

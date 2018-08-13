@@ -20,7 +20,7 @@ class EditArticle extends Component {
 			title: "",
 
 			// 编辑文章的时间
-			editTime: "",
+			editTime: new Date().getTime(),
 
 			// 文章类型数组
 			articleType: [
@@ -36,7 +36,7 @@ class EditArticle extends Component {
 			// 选中的文章类型
 			currentType: {
 				label: "javaScript设计模式",
-				key: 1
+				key: '1'
 			}
 		}
 
@@ -56,12 +56,12 @@ class EditArticle extends Component {
 		const articleData = store.get('articleData') ? store.get('articleData') : this.state;
 		editorInstance.txt.html(articleData.content);
 
+
 		this.setState({
 			title: articleData.title,
 			currentType: articleData.currentType,
 			editTime: articleData.editTime,
 		}, () => {
-			console.log(this.state.editTime);
 		})
 
 	}
@@ -83,6 +83,7 @@ class EditArticle extends Component {
 
 	// 修改文章类型
 	changeType(value) {
+		console.log(value)
 		this.setState({
 			currentType: value
 		})
@@ -98,12 +99,12 @@ class EditArticle extends Component {
 	// 保存文章
 	saveArticle() {
 		const { title, editTime, currentType } = this.state;
-		if(!time) { message.error('请选择时间'); return }
+		if(!editTime) { message.error('请选择时间'); return }
 		if(title == ''){message.error('请填写文章标题'); return }
 		
 		let content = editorInstance.txt.html();
 		http.post({
-			url: "/api/article/save",
+			url: "/article/save",
 			data: {
 				title: title,
 				thumb: "123",
@@ -111,7 +112,7 @@ class EditArticle extends Component {
 				type: currentType.key,
 				uid: 1,
 				content: content,
-				addtime: editTime
+				addtime: new Date(editTime).getTime()
 			}
 		}).then(res => {
 			if(res.code == 1){
@@ -124,7 +125,6 @@ class EditArticle extends Component {
 
     render () {
 		const { articleType, title, editTime, currentType } = this.state;
-		let time = editTime ? editTime : ""
         return(
             <div className="edit-article">
                 <Header />
@@ -147,19 +147,24 @@ class EditArticle extends Component {
 					{/* 选择日期, 选择类型 */}
 					<div className="article-type">
 						<div className="article-type-item">
-							<DatePicker className="article-date" onChange={this.changeTime} />
+							{
+								console.log(editTime)
+							}
+							<DatePicker 
+								defaultValue={moment("2018/8/12", 'YYYY-MM-DD')}
+								className="article-date" onChange={this.changeTime} />
 						</div>
 
 						<div className="article-type-item">
 							<Select 
 							  placeholder="文章类型" 
 							  labelInValue 
-							  defaultValue={"javaScript设计模式"}
+							  defaultValue={{label: currentType.key, key: currentType.label}}
 							  onChange={this.changeType} 
 							  style={{ width: '100%' }} >
 								{
 									articleType.map((item) => (
-										<Option key={item.id} value={item.id}>{ item.type }</Option>
+										<Option key={item.id} value={item.type}>{ item.type }</Option>
 									))
 								}
 

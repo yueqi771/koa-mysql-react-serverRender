@@ -1,5 +1,5 @@
 const userModel = require('../mysql/index.js');
-// const monent = require('monent');
+// const moment = require('moment');
 const checkLogin = require('../middlewares/check.js').isLogout;
 
 // 保存编辑的文章
@@ -11,7 +11,7 @@ exports.save = async ctx => {
         author = "越祈";
         // ctx.session.user
 
-    await userModel.inserArticle([thumb, title, description, parseInt(type), author, content, addtime, uid])
+    await userModel.inserArticle([thumb, title, description, parseInt(type), author, content, parseInt(addtime/1000), uid])
         .then(() => {
             ctx.body = {
                 code: 1,
