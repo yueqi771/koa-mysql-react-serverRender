@@ -4,7 +4,7 @@ import Index from '@pages/Index/index'
 import Login from '@pages/User/login'
 import Register from '@pages/User/register'
 import EditArticle from '@pages/Article/edit'
-import ArticleDetail from '@pages/Article/detail'
+// import ArticleDetail from '@pages/Article/detail'
 
 
 
@@ -35,12 +35,12 @@ const RouteMap = [
     },
 
     // 文章详情页面
-    {
-        path: '/detail/:id',
-        component: ArticleDetail,
-        exact: 'true'
-    },
-    
+    // {
+    //     path: '/detail/:id',
+    //     component: ArticleDetail,
+    //     exact: 'true'
+    // },
+
 ]
 
 export default RouteMap;

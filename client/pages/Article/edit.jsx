@@ -44,7 +44,7 @@ class EditArticle extends Component {
 		this.changeTime = this.changeTime.bind(this);
 	}
 
-	componentDidMount() {	
+	componentDidMount() {
 
 		// 实例化editor;
 		var Editor = window.wangEditor;
@@ -59,9 +59,6 @@ class EditArticle extends Component {
 
 		this.setState({
 			title: articleData.title,
-			currentType: articleData.currentType,
-			editTime: articleData.editTime,
-		}, () => {
 		})
 
 	}
@@ -101,7 +98,7 @@ class EditArticle extends Component {
 		const { title, editTime, currentType } = this.state;
 		if(!editTime) { message.error('请选择时间'); return }
 		if(title == ''){message.error('请填写文章标题'); return }
-		
+
 		let content = editorInstance.txt.html();
 		http.post({
 			url: "/article/save",
@@ -136,10 +133,10 @@ class EditArticle extends Component {
 
 					{/* 输入标题 */}
 					<div className="title-wrapper">
-						<input 
-						  value={title} 
-						  type="text" 
-						  placeholder="请输入标题" 
+						<input
+						  value={title}
+						  type="text"
+						  placeholder="请输入标题"
 						  className="title-input"
 						  onChange={e => { this.setState({title: e.target.value}) }}  />
 					</div>
@@ -150,17 +147,15 @@ class EditArticle extends Component {
 							{
 								console.log(editTime)
 							}
-							<DatePicker 
-								defaultValue={moment("2018/8/12", 'YYYY-MM-DD')}
+							<DatePicker
 								className="article-date" onChange={this.changeTime} />
 						</div>
 
 						<div className="article-type-item">
-							<Select 
-							  placeholder="文章类型" 
-							  labelInValue 
-							  defaultValue={{label: currentType.key, key: currentType.label}}
-							  onChange={this.changeType} 
+							<Select
+							  placeholder="文章类型"
+							  labelInValue
+							  onChange={this.changeType}
 							  style={{ width: '100%' }} >
 								{
 									articleType.map((item) => (

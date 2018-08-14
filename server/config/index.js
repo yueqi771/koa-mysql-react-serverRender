@@ -1,11 +1,11 @@
 const config = {
     port: 3000,
     database: {
-        DATABASE: 'yueqisql',
+        DATABASE: 'yueqi',
         USERNAME: 'root',
-        PASSWORD: '',
+        PASSWORD: 'dAdlKsV=H8rw',
         PORT: '3306',
-        HOST: 'localhost'
+        HOST: '47.93.238.212'
     }
 }
 

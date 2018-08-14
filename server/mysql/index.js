@@ -33,7 +33,7 @@ let query = (sql, values) => {
 }
 
 // 创建user表
-let user = 
+let user =
     `CREATE TABLE IF NOT EXISTS user(
         id INT(10) NOT NULL AUTO_INCREMENT  COMMENT '用户id',
         name VARCHAR(32) CHARACTER SET utf8 NOT NULL COMMENT '用户昵称',
@@ -45,7 +45,7 @@ let user =
         PRIMARY KEY (id)
     );`
 
-let article = 
+let article =
     `CREATE TABLE IF NOT EXISTS article(
         id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户id',
         thumb VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章封面',
@@ -56,7 +56,7 @@ let article =
         uid INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '作者id',
         content TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章内容',
         clicks INT(10) UNSIGNED NOT NULL COMMENT '浏览量',
-        addtime VARCHAR(36) UNSIGNED NOT NULL COMMENT '添加时间',
+        addtime INT(10) UNSIGNED NOT NULL COMMENT '添加时间',
         status TINYINT(4) UNSIGNED NOT NULL DEFAULT '1' COMMENT '0-删除 1-正常',
         PRIMARY KEY (ID)
     )`
@@ -85,3 +85,10 @@ exports.inserArticle = (value) => {
     let _sql = "insert into article set thumb=?, title=?, description=?, type=?, author=?, content=?, clicks=0, addtime=?";
     return query(_sql, value)
 }
+
+// 根据id查找文章
+exports.findComment = (id) => {
+	let _sql = `select * from article where id = ${id}`;
+	return query = (_sql, value)
+}
+
