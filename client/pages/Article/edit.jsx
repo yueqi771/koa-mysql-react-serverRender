@@ -19,6 +19,9 @@ class EditArticle extends Component {
 			// 输入的文章标题
 			title: "",
 
+			// 文章id
+			articleId: "",
+
 			// 编辑文章的时间
 			editTime: new Date().getTime(),
 
@@ -45,20 +48,29 @@ class EditArticle extends Component {
 	}
 
 	componentDidMount() {
-
 		// 实例化editor;
 		var Editor = window.wangEditor;
 		window.editorInstance = new Editor('#toolbar', '#editor');
 		editorInstance.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
 		editorInstance.create()
 
-		// 保存上次编辑的内容
-		const articleData = store.get('articleData') ? store.get('articleData') : this.state;
-		editorInstance.txt.html(articleData.content);
+		// 根据文章id 获取文章内容
+		http.post({
+			url: "/article/getConetent",
+			data: {
+				title: store.get('articleData').title ? store.get('articleData').title : ''
+			}
+		}).then(res => {
+			if(res.code == 1){
+				// 展示上次编辑的内容
+				editorInstance.txt.html(res.data.content);
 
+				this.setState({
+					title: res.data.title,
+					articleId: res.data.id
+				})
 
-		this.setState({
-			title: articleData.title,
+			}
 		})
 
 	}
@@ -95,7 +107,7 @@ class EditArticle extends Component {
 
 	// 保存文章
 	saveArticle() {
-		const { title, editTime, currentType } = this.state;
+		const { title, editTime, currentType, articleId } = this.state;
 		if(!editTime) { message.error('请选择时间'); return }
 		if(title == ''){message.error('请填写文章标题'); return }
 
@@ -103,6 +115,7 @@ class EditArticle extends Component {
 		http.post({
 			url: "/article/save",
 			data: {
+				id: articleId,
 				title: title,
 				thumb: "123",
 				description: "sdf",
@@ -113,7 +126,7 @@ class EditArticle extends Component {
 			}
 		}).then(res => {
 			if(res.code == 1){
-				message.success('保存成功')
+				message.success(res.message)
 			}else{
 				message.error(res.message)
 			}

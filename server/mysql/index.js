@@ -86,9 +86,15 @@ exports.inserArticle = (value) => {
     return query(_sql, value)
 }
 
+// 更新文章
+exports.updateArticle = (value) => {
+    let _sql = "update article set title=?, description=?, type=?, author=?, content=?, addtime=? where id=?";
+	return query(_sql, value)
+}
+
 // 根据id查找文章
-exports.findComment = (id) => {
-	let _sql = `select * from article where id = ${id}`;
-	return query = (_sql, value)
+exports.findArticle = (title) => {
+	let _sql = `select * from article where title = '${title}'`;
+	return query(_sql, title)
 }
 
