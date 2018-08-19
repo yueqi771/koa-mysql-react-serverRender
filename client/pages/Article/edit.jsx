@@ -48,6 +48,9 @@ class EditArticle extends Component {
 	}
 
 	componentDidMount() {
+		// 获取文章id
+		let articleID = this.props.match.params.id ? this.props.match.params.id : ''
+
 		// 实例化editor;
 		var Editor = window.wangEditor;
 		window.editorInstance = new Editor('#toolbar', '#editor');
@@ -58,7 +61,8 @@ class EditArticle extends Component {
 		http.post({
 			url: "/article/getConetent",
 			data: {
-				title: store.get('articleData').title ? store.get('articleData').title : ''
+				id: articleID,
+				// title: store.get('articleData').title ? store.get('articleData').title : ''
 			}
 		}).then(res => {
 			if(res.code == 1){

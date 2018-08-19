@@ -1,0 +1,39 @@
+.article-list{
+    width: 100%;
+
+    // banner背景图
+    .article-banner{
+        width: 100%;
+        min-height: 418px;
+        img{
+            position: absolute;
+            width: 100%;
+            top: 0;
+            min-width: 1266px;
+        }
+    }
+    .article-list-wrapper{
+        width: 1200px;
+        margin: 40px auto 0;
+        min-height: 600px;
+        border: 1px solid #666;
+        position: relative;
+
+        .article-filter{
+            display: flex;
+            
+            .filter-item{
+                margin-right: 16px;
+            }
+        }
+    }
+
+    // <div className="article-filter">
+    //     {
+    //         articleType.map((item, index) => (
+    //             <p className="filter-item" key={item.id}>{item.type}</p> 
+    //         ))
+    //     }
+    // </div>
+    
+}

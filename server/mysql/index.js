@@ -93,8 +93,8 @@ exports.updateArticle = (value) => {
 }
 
 // 根据id查找文章
-exports.findArticle = (title) => {
-	let _sql = `select * from article where title = '${title}'`;
-	return query(_sql, title)
+exports.findArticle = (id) => {
+	let _sql = `select * from article where id = '${id}'`;
+	return query(_sql, id)
 }
 

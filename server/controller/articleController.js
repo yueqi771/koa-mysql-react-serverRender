@@ -52,10 +52,10 @@ exports.save = async ctx => {
 
 // 返回文章内容
 exports.getArticleContent = async ctx => {
-    let { title } = ctx.request.body;
+    let { id } = ctx.request.body;
 
     // 根据标题查找文章
-    await userModel.findArticle(title)
+    await userModel.findArticle(id)
         .then(res => {
             if(res.length > 0){
                 ctx.body={
@@ -73,4 +73,19 @@ exports.getArticleContent = async ctx => {
                 }
             }
         })
+}
+
+// 返回文章所有类型
+exports.getArticleType = async ctx => {
+    ctx.body = {
+        code: 1,
+        type: [
+            { type: 'javaScript设计模式', id: 1 },
+            { type: 'mysql', id: 2 },
+            { type: 'node', id: 3 },
+            { type: 'vue', id: 4 },
+            { type: 'react', id: 5 },
+            { type: 'HTTP', id: 6 },
+        ]
+    }
 }

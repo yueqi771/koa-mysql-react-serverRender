@@ -1,45 +1,61 @@
 import React from 'react';
 import Component from '@utils/component';
-import Index from '@pages/Index/index'
-import Login from '@pages/User/login'
-import Register from '@pages/User/register'
-import EditArticle from '@pages/Article/edit'
-// import ArticleDetail from '@pages/Article/detail'
 
 
 
 const RouteMap = [
     {
         path: '/index',
-        component: Index,
+        component: Component.Async(() =>
+            import ('@pages/Index/index')),
         exact: 'true'
     },
 
     {
         path: '/login',
-        component: Login,
+        component: Component.Async(() =>
+            import ('@pages/User/login')),
         exact: 'true'
     },
 
     {
         path: '/register',
-        component: Register,
+        component: Component.Async(() =>
+            import ('@pages/User/register')),
+        exact: 'true'
+    },
+
+    // 文章列表页面
+    {
+        path: '/list',
+        component: Component.Async(() =>
+            import ('@pages/article/list')),
         exact: 'true'
     },
 
     // 编辑文章页面
     {
-        path: '/edit',
-        component: EditArticle,
+        path: '/edit/:id',
+        component: Component.Async(() =>
+            import ('@pages/Article/edit')),
         exact: 'true'
     },
 
+    {
+        path: '/edit',
+        component: Component.Async(() =>
+            import ('@pages/Article/edit')),
+    },
+
+
     // 文章详情页面
-    // {
-    //     path: '/detail/:id',
-    //     component: ArticleDetail,
-    //     exact: 'true'
-    // },
+    {
+        path: '/detail/:id',
+        component: Component.Async(() =>
+            import ('@pages/Article/detail')),
+        exact: 'true'
+    },
+    
 
 ]
 
