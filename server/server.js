@@ -10,7 +10,7 @@ const staticRouter = require('./router/static')
 
 // 判断当前环境
 const isDev = process.env.NODE_ENV === 'development';
-console.log(process.env.NODE_ENV )
+console.log('当前的环境' + '  : ' + process.env.NODE_ENV)
 
 const app = new Koa();
 
@@ -56,7 +56,7 @@ app.use(bodyParser({
 
 // 配置静态资源加载中间件
 app.use(koaStatic(path.join(__dirname, '../static')))
-app.use(koaStatic(path.join(__dirname, '../dist')))
+// app.use(koaStatic(path.join(__dirname, '../dist')))
 
 // 配置代理
 app.use(proxy({

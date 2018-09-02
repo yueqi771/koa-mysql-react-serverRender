@@ -28,7 +28,7 @@ module.exports = async (ctx, bundle, template) => {
                 // 定义当前页面需要显示的title, description内容
                 const helmet = Helmet.rewind();
                 const state = getStoreState(stores);
-                const content = await ReactDomServer.renderToString(app)
+                const content = await ReactDomServer.renderToString(app);
 
                 // 服务器端处理redirect，路由跳转
                 if (routerContext.url) {
@@ -44,12 +44,13 @@ module.exports = async (ctx, bundle, template) => {
                     link: helmet.link.toString(), 
                 })
 
+                // console.log(html)
                 ctx.body = html;
             } )
 
     } catch(err) {
         console.log(err)
         throw err
-        // ctx.body = "出错啦";
+        ctx.body = "出错啦";
     }
 }
