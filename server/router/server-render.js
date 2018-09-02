@@ -20,16 +20,15 @@ module.exports = async (ctx, bundle, template) => {
         const stores = bundle.createStoreMap();
         const routerContext = {};
         const createApp = bundle.default;
-        const app = createApp(stores, routerContext, ctx.url);
+        const app = await createApp(stores, routerContext, ctx.url);
 
-        // await asyncBootstrap(app)
-        //     .then(async () => {
+
+        await asyncBootstrap(app)
+            .then(async () => {
                 // 定义当前页面需要显示的title, description内容
                 const helmet = Helmet.rewind();
                 const state = getStoreState(stores);
-                const content = await ReactDomServer.renderToString(app);
-
-                console.log(routerContext)
+                const content = await ReactDomServer.renderToString(app)
 
                 // 服务器端处理redirect，路由跳转
                 if (routerContext.url) {
@@ -46,9 +45,7 @@ module.exports = async (ctx, bundle, template) => {
                 })
 
                 ctx.body = html;
-            // } )
-
-       
+            } )
 
     } catch(err) {
         console.log(err)

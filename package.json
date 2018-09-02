@@ -7,7 +7,7 @@
     "build:client": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.conf.js",
     "build:server": "cross-env NODE_ENV=production webpack --config ./build/webpack.server.conf.js",
     "build": "npm run clear && npm run build:client && npm run build:server",
-    "clear": "rimraf dist",
+    "clear": "rimraf static/dist",
     "dev:client": "cross-env NODE_ENV=development webpack-dev-server --open --config ./build/webpack.client.conf.js",
     "dev:server": "cross-env NODE_ENV=development nodemon server/server.js",
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",

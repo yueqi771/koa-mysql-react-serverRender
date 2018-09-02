@@ -11,9 +11,9 @@ module.exports = merge(baseConf, {
         app: ["babel-polyfill", "./client/main.js"],
     },
     output: {
-        path: path.resolve(__dirname, "../static/dist"),
+        path: path.resolve(__dirname, "../dist"),
         filename: "js/[name].[chunkhash:8].js",
-        publicPath: "/static/dist"
+        publicPath: "./"
     },
     optimization: {
         splitChunks: {
@@ -52,14 +52,10 @@ module.exports = merge(baseConf, {
             {
                 test:/\.css/,
                 use:ExtractTextPlugin.extract({
-                    fallback:'style-loader',
-                    use:'css-loader'
+                    use:'css-loader',
+                    fallback:'style-loader'
                 })
             },  
-            // {
-			// 	test: /\.ejs$/,
-			// 	loader: "ejs-compiled-loader!ejs-loader",
-            // },
         ]
     },
     plugins: [

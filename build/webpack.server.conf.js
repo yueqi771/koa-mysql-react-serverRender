@@ -23,8 +23,8 @@ module.exports = merge(baseWebpackConfig, {
     output: {
         // 打包出来的名字
         filename: "server-entry.js",
-        path: path.join(__dirname, '../static/dist'),
-        publicPath: '/static/dist',
+        path: path.join(__dirname, '../dist'),
+        publicPath: './',
         // 打包出来的js的模块化方案
         libraryTarget: "commonjs2"
     },
@@ -54,9 +54,9 @@ module.exports = merge(baseWebpackConfig, {
             allChunks: true
         }),
 
-        // new webpack.DefinePlugin({
-        //     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-        // }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+        }),
 
     ],
 
