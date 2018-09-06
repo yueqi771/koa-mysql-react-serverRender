@@ -55,8 +55,8 @@ app.use(bodyParser({
 
 
 // 配置静态资源加载中间件
-app.use(koaStatic(path.join(__dirname, '../static')))
-// app.use(koaStatic(path.join(__dirname, '../dist')))
+app.use(koaStatic(path.join(__dirname, '../dist')));
+app.use(koaStatic(path.join(__dirname, '../static')));
 
 // 配置代理
 app.use(proxy({

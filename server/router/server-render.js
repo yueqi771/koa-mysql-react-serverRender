@@ -32,7 +32,7 @@ module.exports = async (ctx, bundle, template) => {
 
                 // 服务器端处理redirect，路由跳转
                 if (routerContext.url) {
-                    ctx.status = 301; 
+                    ctx.status = 301;
                     ctx.redirect(routerContext.url);
                 }
 
@@ -41,11 +41,13 @@ module.exports = async (ctx, bundle, template) => {
                     initialState: serialize(state),
                     title: helmet.title.toString(),
                     style: helmet.style.toString(),
-                    link: helmet.link.toString(), 
+                    link: helmet.link.toString(),
                 })
 
+				ctx.response.type = 'html';
+				ctx.response.body = html;
+
                 // console.log(html)
-                ctx.body = html;
             } )
 
     } catch(err) {
