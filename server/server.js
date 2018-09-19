@@ -1,4 +1,4 @@
-const Koa = require('Koa');
+const Koa = require('koa');
 const mysql = require('mysql');
 const send = require('koa-send');
 const path = require('path');
